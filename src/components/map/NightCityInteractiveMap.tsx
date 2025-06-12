@@ -42,7 +42,7 @@ export function NightCityInteractiveMap({
   // You WILL LIKELY NEED TO ADJUST x, y, width, height for each district 
   // to match your specific SVG layout. These are very rough guesses.
   const districtHotspots: Record<string, { x: string, y: string, width: string, height: string, name: string }> = {
-    "watson-o-berco-e-o-abandono": { x: "150", y: "50", width: "200", height: "150", name: "Watson" },
+    "watson-o-berco-e-o-abandono": { x: "0", y: "0", width: "200", height: "150", name: "Watson" },
     "westbrook-o-luxo-deteriorado-e-a-ordem-dos-tyger-claws": { x: "360", y: "100", width: "180", height: "120", name: "Westbrook" },
     "city-center-o-coracao-de-neon-do-poder-corporativo": { x: "300", y: "250", width: "250", height: "200", name: "City Center" },
     "heywood-a-alma-multifacetada-de-night-city": { x: "300", y: "460", width: "250", height: "180", name: "Heywood" },
