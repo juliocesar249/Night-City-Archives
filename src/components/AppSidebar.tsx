@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   SidebarHeader,
   SidebarContent,
@@ -12,7 +12,7 @@ import {
   SidebarFooter,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Home, Map, Users, Building, Bot, Info, Database, Loader2 } from "lucide-react"; 
+import { Home, Map, Users, Building, Bot, Info, Database, Loader2, Sun, Moon } from "lucide-react"; 
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { getLoreDataShard } from "@/app/actions/loreActions";
@@ -31,11 +31,11 @@ export function AppSidebar() {
         description: snippet,
         duration: 8000, // Show for 8 seconds
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Failed to generate lore shard:", error);
       toast({
         title: "Erro de Transmissão",
-        description: "Não foi possível obter o data shard. Tente novamente, choom.",
+        description: error.message || "Não foi possível obter o data shard. Tente novamente, choom.",
         variant: "destructive",
       });
     } finally {
@@ -69,7 +69,7 @@ export function AppSidebar() {
         <SidebarMenu>
           {navItems.map((item) => (
             <SidebarMenuItem key={item.label}>
-              <Link href={item.href} >
+              <Link href={item.href}>
                 <SidebarMenuButton
                   tooltip={{
                     children: item.label,
@@ -110,3 +110,4 @@ export function AppSidebar() {
     </>
   );
 }
+

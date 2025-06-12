@@ -8,8 +8,6 @@ import path from 'path';
 export async function getLoreDataShard(): Promise<string> {
   try {
     // Assuming night-city.md is in the project root.
-    // In a real scenario, this path might need to be more robust
-    // or the file content could be managed differently (e.g., database, CMS).
     const filePath = path.join(process.cwd(), 'night-city.md');
     const nightCityLore = await fs.readFile(filePath, 'utf-8');
     
@@ -17,7 +15,12 @@ export async function getLoreDataShard(): Promise<string> {
     return snippet;
   } catch (error) {
     console.error("Error in getLoreDataShard:", error);
-    // Provide a fallback or re-throw a more specific error
-    return "Connection lost... data shard corrupted. Try again, choom.";
+    // Re-throw a new error or the original one so the client-side can handle it.
+    // This allows the client to display a more appropriate error toast.
+    if (error instanceof Error) {
+      throw new Error(error.message || "Failed to retrieve lore data shard. The archives might be corrupted or the connection is unstable.");
+    }
+    throw new Error("An unknown error occurred while retrieving the lore data shard.");
   }
 }
+
