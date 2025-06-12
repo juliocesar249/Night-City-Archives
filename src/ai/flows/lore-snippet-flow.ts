@@ -17,7 +17,7 @@ const LoreSnippetInputSchema = z.object({
 export type LoreSnippetInput = z.infer<typeof LoreSnippetInputSchema>;
 
 const LoreSnippetOutputSchema = z.object({
-  snippet: z.string().describe("A very short, intriguing, and engaging lore snippet (1-2 sentences maximum, ideally one) extracted or synthesized from the provided Night City context. It should sound like a 'data shard,' a piece of trivia, a rumour, or an interesting fact an insider might know. Focus on being concise and captivating. Avoid introductory phrases like 'Did you know...' or 'An interesting fact is...'. Just state the lore directly."),
+  snippet: z.string().describe("Um trecho de lore muito curto, intrigante e envolvente (máximo de 1-2 frases, idealmente uma) em Português (Brasil), extraído ou sintetizado do contexto fornecido sobre Night City. Deve soar como um 'data shard', uma curiosidade, um boato ou um fato interessante que um insider saberia. Foque em ser conciso e cativante. Evite frases introdutórias como 'Você sabia que...' ou 'Um fato interessante é...'. Apenas declare o lore diretamente."),
 });
 export type LoreSnippetOutput = z.infer<typeof LoreSnippetOutputSchema>;
 
@@ -34,16 +34,17 @@ const lorePrompt = ai.definePrompt({
   prompt: `You are a Night City archivist AI. Your task is to extract or synthesize one extremely concise (1-2 sentences maximum, ideally one sentence) and interesting piece of lore, a "data shard," from the provided text about Night City.
 
 This snippet should be:
+- In Brazilian Portuguese (Português do Brasil).
 - Intriguing and engaging.
 - Sound like a piece of trivia, a rumour, or an interesting fact an insider might know.
-- Directly stated, without any conversational fluff or introductory phrases (e.g., no "Did you know...", "Here's a fact:", etc.).
+- Directly stated, without any conversational fluff or introductory phrases (e.g., no "Você sabia que...", "Aqui está um fato:", etc.).
 - Varied. Try to pick different types of information if called multiple times with the same context.
 - Focused on specific details rather than general summaries.
 
 Context:
 {{{context}}}
 
-Generate one data shard based on the context.
+Generate one data shard based on the context. Ensure the output is in Brazilian Portuguese.
 `,
 });
 
