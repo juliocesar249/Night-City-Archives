@@ -2,7 +2,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Map, Users, Building } from "lucide-react";
+import { ArrowRight, Map, Users, Building, Database } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -11,6 +11,7 @@ export default function Home() {
   const districtIntro = "Night City é dividida em diversos distritos, cada um com sua própria vibe e seus próprios problemas, como Watson, Heywood, Westbrook, Santo Domingo, Pacifica, o City Center e Dogtown, onde o poder real reside.";
   const gangIntro = "Com tanta opressão corporativa, a criminalidade explode. As gangues são a resposta da população à falta de oportunidades e à violência das megacorporações. Elas controlam territórios, traficam drogas, armas e cibernéticos ilegais.";
   const corpIntro = "Em Night City, o governo é uma piada. Quem manda de verdade são as megacorporações. Elas controlam tudo: a economia, a tecnologia, a mídia, a segurança e até mesmo a vida das pessoas.";
+  const terminalIntro = "Acesse fragmentos de lore perdidos, teste seus conhecimentos sobre os becos escuros ou intercepte as últimas notícias caóticas da N54. O Terminal de Inteligência é sua conexão direta com os segredos da cidade.";
 
   const sections = [
     {
@@ -30,6 +31,12 @@ export default function Home() {
       description: corpIntro,
       href: "/corporacoes",
       icon: <Building className="mr-2 h-5 w-5 text-primary" />,
+    },
+    {
+      title: "Terminal de Inteligência",
+      description: terminalIntro,
+      href: "/datashard", // This is the page for Terminal de Inteligência
+      icon: <Database className="mr-2 h-5 w-5 text-primary" />,
     },
   ];
 
