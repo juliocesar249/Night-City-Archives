@@ -43,38 +43,38 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: 222 84% 5%; /* Very Dark Blue */
+    --foreground: 200 15% 85%; /* Light Grey/Cyanish White for text */
+    --card: 222 70% 8%; /* Slightly Lighter Dark Blue for cards */
+    --card-foreground: 200 15% 85%;
+    --popover: 222 70% 8%;
+    --popover-foreground: 200 15% 85%;
+    --primary: 45 100% 50%; /* Cyberpunk Yellow */
+    --primary-foreground: 222 84% 5%; /* Dark Blue text on yellow */
+    --secondary: 210 50% 25%; /* Muted Cyan/Blue */
+    --secondary-foreground: 200 15% 75%;
+    --muted: 210 30% 20%;
+    --muted-foreground: 200 15% 55%;
+    --accent: 320 100% 55%; /* Neon Pink/Magenta */
+    --accent-foreground: 0 0% 100%; /* White text on pink */
+    --destructive: 0 70% 50%; /* Vivid Red */
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 40% 30%; /* Dark Cyan/Blue border */
+    --input: 222 70% 10%; /* Dark input background */
+    --ring: 45 100% 55%; /* Slightly more intense yellow for ring */
+    --chart-1: 180 100% 50%; /* Cyan */
+    --chart-2: 300 100% 65%; /* Magenta */
+    --chart-3: 50 100% 50%; /* Yellow */
+    --chart-4: 240 100% 70%; /* Bright Blue */
+    --chart-5: 120 100% 50%; /* Green */
+    --sidebar-background: 222 80% 7%;
+    --sidebar-foreground: 200 15% 70%;
+    --sidebar-primary: 45 100% 50%;
+    --sidebar-primary-foreground: 222 84% 5%;
+    --sidebar-accent: 222 60% 12%;
+    --sidebar-accent-foreground: 200 15% 90%;
+    --sidebar-border: 210 40% 25%;
+    --sidebar-ring: 45 100% 55%;
   }
 }
 

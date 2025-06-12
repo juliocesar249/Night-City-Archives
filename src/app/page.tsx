@@ -1,26 +1,22 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Home() {
+  const introText = "Night City é a joia mais suja e brilhante da Costa Oeste dos Estados Unidos. Ela é a materialização do sonho de um cara visionário (ou maluco, dependendo do ponto de vista) que queria criar uma cidade sem as amarras do governo e da burocracia. O resultado? Um paraíso distópico onde tudo é à base de dinheiro, poder e muita violência.";
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-background">
-      <Card className="w-full max-w-md shadow-xl">
+      <Card className="w-full max-w-2xl shadow-xl border-primary">
         <CardHeader>
-          <CardTitle className="font-headline text-3xl text-center">React Vite Template</CardTitle>
-          <CardDescription className="text-center text-muted-foreground pt-2">
-            A minimal starting point for your Next.js application.
+          <CardTitle className="font-headline text-4xl text-center text-primary">Bem-vindo(a) a Night City</CardTitle>
+          <CardDescription className="text-center text-muted-foreground pt-2 text-lg">
+            Uma introdução à metrópole dos sonhos e pesadelos.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-foreground text-center">
-            This is a basic template. Modify this page and add new components to build your application.
-            The styling is set according to your preferences with a light gray primary, white background, and soft blue accent.
+          <p className="text-foreground text-center text-base leading-relaxed">
+            {introText}
           </p>
         </CardContent>
-        <CardFooter className="flex justify-center">
-          <Button variant="default" className="bg-primary hover:bg-primary/90 text-primary-foreground">Primary Button</Button>
-          <Button variant="outline" className="ml-4 border-accent text-accent-foreground hover:bg-accent hover:text-accent-foreground">Accent Button</Button>
-        </CardFooter>
       </Card>
     </main>
   );
