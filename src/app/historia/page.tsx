@@ -77,7 +77,7 @@ export default function HistoriaPage() {
       <main className="flex flex-1 flex-col items-center p-4 sm:p-8 bg-background">
         <ScrollArea className="w-full h-[calc(100vh-100px)]"> {/* Adjust height as needed */}
           <div className="w-full max-w-3xl mx-auto space-y-8">
-            <Card className="shadow-xl border-accent rounded-lg overflow-hidden">
+            <Card className="shadow-xl border-foreground rounded-lg overflow-hidden">
               <CardHeader className="bg-card-foreground p-6">
                 <CardTitle className="font-headline text-3xl sm:text-4xl text-center text-primary">Night City: Uma Cidade de Sonhos e Pesadelos</CardTitle>
               </CardHeader>
@@ -89,8 +89,12 @@ export default function HistoriaPage() {
             </Card>
 
             {sections.map((section, index) => (
-              <Card key={index} className="shadow-lg border-secondary rounded-lg overflow-hidden">
-                <CardHeader className="bg-card-foreground/50 p-6">
+              <Card 
+                key={index} 
+                className="shadow-lg border-primary rounded-lg overflow-hidden"
+                style={{ boxShadow: `0 0 10px 2px hsl(var(--primary))` }}
+              >
+                <CardHeader className="bg-black p-6">
                   <CardTitle className="font-headline text-2xl sm:text-3xl text-primary">{section.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-6 space-y-4">
