@@ -8,55 +8,9 @@ body {
 }
 
 @layer base {
-  :root { /* Light Theme */
-    --background: 0 0% 98%; /* Very Light Gray (almost white) */
-    --foreground: 0 0% 15%; /* Darker Gray for text for better contrast */
+  /* Removed light theme :root variables */
 
-    --card: 0 0% 100%; /* White */
-    --card-foreground: 0 0% 15%; /* Darker Gray for text on cards */
-
-    --popover: 0 0% 100%; /* White */
-    --popover-foreground: 0 0% 15%;
-
-    --primary: 220 70% 50%; /* A clear, standard Blue */
-    --primary-foreground: 0 0% 100%; /* White text on primary blue */
-
-    --secondary: 220 15% 92%; /* Lighter, softer cool gray */
-    --secondary-foreground: 0 0% 20%; /* Dark gray text on secondary */
-
-    --muted: 220 15% 95%; /* Very light, soft cool gray */
-    --muted-foreground: 0 0% 40%; /* Medium gray for muted text */
-
-    --accent: 210 60% 65%;  /* A lighter, less saturated blue as accent - to be harmonious */
-    --accent-foreground: 0 0% 100%; /* White text for this lighter blue accent */
-
-    --destructive: 0 80% 60%; /* Standard Red */
-    --destructive-foreground: 0 0% 98%; /* White text on red */
-
-    --border: 0 0% 85%; /* Slightly darker light gray border for more visibility */
-    --input: 0 0% 94%; /* Slightly darker off-white input background */
-    --ring: 220 70% 60%; /* Slightly lighter blue for focus rings */
-
-    --chart-1: 220 70% 50%; /* Blue */
-    --chart-2: 0 70% 60%;   /* Red */
-    --chart-3: 130 60% 45%; /* Green */
-    --chart-4: 35 85% 60%;  /* Orange */
-    --chart-5: 270 60% 60%; /* Purple */
-
-    --radius: 0.5rem;
-
-    /* Light theme sidebar colors - aiming for clarity and less clash */
-    --sidebar-background: 220 20% 96%; /* Light cool gray */
-    --sidebar-foreground: 0 0% 20%;    /* Dark gray for text */
-    --sidebar-primary: 220 65% 45%;    /* Slightly darker primary blue for sidebar emphasis */
-    --sidebar-primary-foreground: 0 0% 100%; /* White */
-    --sidebar-accent: 220 15% 90%;     /* Very light gray for hovers */
-    --sidebar-accent-foreground: 0 0% 15%; /* Dark gray text on sidebar accent */
-    --sidebar-border: 220 15% 85%;     /* Border color for sidebar */
-    --sidebar-ring: 220 70% 55%;       /* Ring color for focus states (blue) */
-  }
-
-  .dark { /* Dark Theme - this remains unchanged */
+  .dark { /* Dark Theme - this is now the only active theme */
     --background: 222 84% 4.9%;
     --foreground: 210 40% 98%;
     

@@ -2,9 +2,8 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
-  Sidebar,
   SidebarHeader,
   SidebarContent,
   SidebarMenu,
@@ -13,38 +12,15 @@ import {
   SidebarFooter,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Home, Map, Users, Building, Bot, Info, Sun, Moon, Database, Loader2 } from "lucide-react"; 
-import { Button } from "@/components/ui/button";
+import { Home, Map, Users, Building, Bot, Info, Database, Loader2 } from "lucide-react"; 
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { getLoreDataShard } from "@/app/actions/loreActions";
 
 export function AppSidebar() {
-  const { open, toggleSidebar, isMobile } = useSidebar();
+  const { open, isMobile } = useSidebar();
   const { toast } = useToast();
-  const [theme, setTheme] = useState("dark");
   const [isGeneratingShard, setIsGeneratingShard] = useState(false);
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("night-city-theme") || "dark";
-    setTheme(storedTheme);
-    if (storedTheme === "light") {
-      document.documentElement.classList.remove("dark");
-    } else {
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    localStorage.setItem("night-city-theme", newTheme);
-    if (newTheme === "light") {
-      document.documentElement.classList.remove("dark");
-    } else {
-      document.documentElement.classList.add("dark");
-    }
-  };
 
   const handleGenerateShard = async () => {
     setIsGeneratingShard(true);
@@ -124,10 +100,6 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="p-4 mt-auto">
-        <Button variant="ghost" onClick={toggleTheme} className="w-full justify-start text-muted-foreground hover:text-foreground">
-          {theme === "dark" ? <Sun className="mr-2 h-5 w-5" /> : <Moon className="mr-2 h-5 w-5" />}
-          <span>{theme === "dark" ? "Modo Claro" : "Modo Escuro"}</span>
-        </Button>
         <Separator className="my-2" />
          {open && !isMobile && (
             <p className="text-xs text-muted-foreground text-center">
