@@ -317,7 +317,7 @@ export const corporations: Corporation[] = [
   {
     name: "Biotechnica: O Império da Vida Sintética e da Biotecnologia",
     introduction: "A Biotechnica é uma megacorporação global líder nos campos da biotecnologia, engenharia genética e agricultura sintética. Eles são os arquitetos do futuro da alimentação, medicina e até mesmo da evolução humana. Enquanto outras corporações dominam o hardware e a energia, a Biotechnica controla o software da vida, mexendo com genes, cultivando alimentos em laboratório e desenvolvendo novas formas de bioprocessamento. Pensa neles como os \"fazendeiros\" e \"médicos\" do futuro, só que com um poder que pode redefinir o que significa ser vivo.",
-    headerBackgroundColor: "#005944",
+    headerBackgroundColor: "#053838",
     accentColor: "#048000",
     sections: [
       {
@@ -609,7 +609,7 @@ export const corporations: Corporation[] = [
   {
     name: "Trauma Team International: O Resgate de Elite, Onde o Dinheiro Compra a Vida",
     introduction: "A Trauma Team International não é uma corporação que produz armas ou energia, ela produz segurança e tratamento médico emergencial de altíssimo nível, para quem pode pagar. Eles são paramédicos de elite, fortemente armados e com tecnologia de ponta, que operam em cenários de combate para resgatar e estabilizar seus clientes – e só seus clientes. Pensa numa equipe de SWAT com médicos. É a Trauma Team.",
-    headerBackgroundColor: "#005396",
+    headerBackgroundColor: "#006285",
     accentColor: "#FF0000",
     sections: [
       {
