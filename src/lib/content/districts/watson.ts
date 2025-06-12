@@ -3,6 +3,7 @@ import type { District } from './types';
 
 export const watson: District = {
   name: "Watson: O Berço e o Abandono",
+  iconName: "Anchor",
   gradient: "linear-gradient(to right, #DB0000, #000000)",
   titleColorClass: "text-primary",
   borderColor: "#DB0000",

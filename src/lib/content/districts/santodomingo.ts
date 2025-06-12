@@ -3,6 +3,7 @@ import type { District } from './types';
 
 export const santoDomingo: District = {
   name: "Santo Domingo: O Motor Industrial e o Caldeirão de Classes",
+  iconName: "Factory",
   gradient: "linear-gradient(to right, #4599FF, #000000)",
   titleColorClass: "text-primary",
   borderColor: "#4599FF",

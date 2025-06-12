@@ -3,6 +3,7 @@ import type { Corporation } from './types';
 
 export const militech: Corporation = {
   name: "Militech: A Máquina de Guerra Americana e o Símbolo do Poder Militar",
+  iconName: "Target",
   introduction: "A Militech é a maior e mais poderosa corporação militar dos Novos Estados Unidos da América (NUSA) e uma das maiores do mundo, rivalizando apenas com a Arasaka. Enquanto a Arasaka é o poder da informação e da segurança onipresente, a Militech é a guerra em si. Eles fabricam tudo que mata: armas, veículos militares, blindagens, drones, mercenários e até estratégias de combate. São a personificação do complexo militar-industrial.",
   headerBackgroundColor: "#000000",
   accentColor: "#F7FF00",

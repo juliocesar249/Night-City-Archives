@@ -3,6 +3,7 @@ import type { Gang } from './types';
 
 export const tygerClaws: Gang = {
   name: "Tyger Claws: A Ordem do Neon e a Sombra da Yakuza",
+  iconName: "Bike", // Changed from Swords as Bike is more distinct for them
   borderColor: "#FF00FF",
   glowColor: "#FF00FF",
   gradient: "linear-gradient(to right, #FF00FF, #330033)",

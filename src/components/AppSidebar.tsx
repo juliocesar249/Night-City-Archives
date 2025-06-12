@@ -12,29 +12,26 @@ import {
   SidebarFooter,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Home, Map, Users, Building, Info, Database, ChevronDown, ChevronRight } from "lucide-react";
+import { Home, Map, Users, Building, Info, Database, ChevronDown, ChevronRight, IdCard } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { districts, type District } from "@/lib/content/districts";
 import { gangs, type Gang } from "@/lib/content/gangs";
 import { corporations, type Corporation } from "@/lib/content/corporations";
-import { useToast } from "@/hooks/use-toast";
-import { getLoreDataShard } from "@/app/actions/loreActions";
+import { figures, type Figure } from "@/lib/content/figures"; // New import
 
 const generateAnchorId = (title: string): string => {
   return title
     .toLowerCase()
-    .replace(/:/g, '') // Remove colons
-    .replace(/\(/g, '') // Remove opening parenthesis
-    .replace(/\)/g, '') // Remove closing parenthesis
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/[^\w-]+/g, ''); // Remove other non-alphanumeric characters except hyphens
+    .replace(/:/g, '') 
+    .replace(/\(/g, '') 
+    .replace(/\)/g, '') 
+    .replace(/\s+/g, '-') 
+    .replace(/[^\w-]+/g, ''); 
 };
 
 export function AppSidebar() {
   const { open, isMobile, setOpenMobile } = useSidebar();
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
-  const { toast } = useToast();
-  const [isGeneratingShard, setIsGeneratingShard] = useState(false);
 
   const toggleSection = (label: string) => {
     setExpandedSections(prev => ({ ...prev, [label]: !prev[label] }));
@@ -61,19 +58,25 @@ export function AppSidebar() {
       href: "/distritos", 
       label: "Distritos", 
       icon: Map,
-      subItems: districts.map(d => ({ label: d.name.split(":")[0], href: `#${generateAnchorId(d.name)}`}))
+      subItems: districts.map(d => ({ label: d.name.split(":")[0].trim(), href: `#${generateAnchorId(d.name)}`}))
     },
     { 
       href: "/gangues", 
       label: "Gangues de Night City", 
       icon: Users,
-      subItems: gangs.map(g => ({ label: g.name.split(":")[0], href: `#${generateAnchorId(g.name)}`}))
+      subItems: gangs.map(g => ({ label: g.name.split(":")[0].trim(), href: `#${generateAnchorId(g.name)}`}))
     },
     { 
       href: "/corporacoes", 
-      label: "Corporaçõs", 
+      label: "Corporações", 
       icon: Building,
-      subItems: corporations.map(c => ({ label: c.name.split(":")[0], href: `#${generateAnchorId(c.name)}`}))
+      subItems: corporations.map(c => ({ label: c.name.split(":")[0].trim(), href: `#${generateAnchorId(c.name)}`}))
+    },
+    { // New "Figuras Notáveis" section
+      href: "/figuras",
+      label: "Figuras Notáveis",
+      icon: IdCard,
+      subItems: figures.map(f => ({ label: f.name, href: `#${generateAnchorId(f.name)}`}))
     },
     { href: "/datashard", label: "Terminal de Inteligência", icon: Database },
   ];

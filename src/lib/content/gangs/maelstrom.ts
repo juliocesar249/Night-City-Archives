@@ -3,6 +3,7 @@ import type { Gang } from './types';
 
 export const maelstrom: Gang = {
   name: "Maelstrom: A Sinapse da Loucura Cibernética",
+  iconName: "Skull",
   borderColor: "#c90000",
   glowColor: "#c90000",
   gradient: "linear-gradient(to right, #c90000, #333333)",

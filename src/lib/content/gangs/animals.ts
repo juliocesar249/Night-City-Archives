@@ -3,6 +3,7 @@ import type { Gang } from './types';
 
 export const animals: Gang = {
   name: "The Animals (Os Animais): Força Bruta, Músculos e Narcotráfico",
+  iconName: "Dumbbell",
   borderColor: "#FFB700",
   glowColor: "#FFB700",
   gradient: "linear-gradient(to right, #FFB700, #FFFFFF)",

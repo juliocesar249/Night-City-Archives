@@ -10,4 +10,5 @@ export interface Corporation {
   sections: CorporationSection[];
   headerBackgroundColor: string;
   accentColor: string;
+  iconName?: string; // Optional: Lucide icon name
 }

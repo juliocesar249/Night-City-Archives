@@ -3,6 +3,7 @@ import type { District } from './types';
 
 export const dogtown: District = {
   name: "Dogtown: O Feudo Anárquico do Coronel Hansen",
+  iconName: "Dog",
   gradient: "linear-gradient(to right, #5CBA57, #000000)",
   titleColorClass: "text-primary",
   borderColor: "#5CBA57",

@@ -2,18 +2,22 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Map, Users, Building as BuildingIcon } from "lucide-react"; // Renamed to avoid conflict
+import { Map as MapIcon, Users, Building as BuildingIconLucide, Anchor, Building2, Home, Factory, BarChartBig, Dog, MountainSnow } from "lucide-react"; // Renamed to avoid conflict, added more icons
 import { districts, type District } from "@/lib/content/districts";
 import { Badge } from "@/components/ui/badge";
+
+const iconMap: Record<string, React.ElementType> = {
+  Anchor, Building2, Home, Factory, BarChartBig, Dog, MountainSnow, MapIcon
+};
 
 const generateAnchorId = (title: string): string => {
   return title
     .toLowerCase()
-    .replace(/:/g, '') // Remove colons
-    .replace(/\(/g, '') // Remove opening parenthesis
-    .replace(/\)/g, '') // Remove closing parenthesis
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/[^\w-]+/g, ''); // Remove other non-alphanumeric characters except hyphens
+    .replace(/:/g, '') 
+    .replace(/\(/g, '') 
+    .replace(/\)/g, '') 
+    .replace(/\s+/g, '-') 
+    .replace(/[^\w-]+/g, ''); 
 };
 
 export default function DistritosPage() {
@@ -24,7 +28,7 @@ export default function DistritosPage() {
     <div className="flex flex-col min-h-screen">
       <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
         <SidebarTrigger className="md:hidden" />
-        <Map className="h-5 w-5 mr-2 text-primary" />
+        <MapIcon className="h-5 w-5 mr-2 text-primary" />
         <h1 className="text-xl font-semibold text-primary">{pageTitle}</h1>
       </header>
       <main className="flex flex-1 flex-col items-center p-4 sm:p-8 bg-background">
@@ -43,9 +47,11 @@ export default function DistritosPage() {
               </CardContent>
             </Card>
 
-            {districts.map((district: District, index: number) => (
+            {districts.map((district: District) => {
+              const DistrictIcon = district.iconName ? iconMap[district.iconName] : null;
+              return (
               <Card 
-                key={index} 
+                key={district.name} 
                 id={generateAnchorId(district.name)}
                 className="shadow-lg rounded-lg overflow-hidden border-2 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-xl"
                 style={{ 
@@ -54,9 +60,10 @@ export default function DistritosPage() {
                 }}
               >
                 <CardHeader 
-                  className="p-6"
+                  className="p-6 flex flex-row items-center gap-3" // Added flex for icon
                   style={{ background: district.gradient }}
                 >
+                  {DistrictIcon && <DistrictIcon className="h-7 w-7" style={{ color: district.titleColorClass.includes('text-black') ? 'black': district.borderColor }} />}
                   <CardTitle className={`font-headline text-2xl sm:text-3xl ${district.titleColorClass}`}>
                     {district.name}
                   </CardTitle>
@@ -86,7 +93,7 @@ export default function DistritosPage() {
                       {district.majorCorporations && district.majorCorporations.length > 0 && (
                          <div>
                            <div className="flex items-center mb-1">
-                            <BuildingIcon className="h-4 w-4 mr-2" style={{ color: district.borderColor }} />
+                            <BuildingIconLucide className="h-4 w-4 mr-2" style={{ color: district.borderColor }} />
                             <span className="text-sm font-semibold" style={{ color: district.borderColor }}>Corporações Presentes:</span>
                            </div>
                            <div className="flex flex-wrap gap-2">
@@ -100,12 +107,11 @@ export default function DistritosPage() {
                   ) : null}
                 </CardContent>
               </Card>
-            ))}
+              );
+            })}
           </div>
         </ScrollArea>
       </main>
     </div>
   );
 }
-
-    

@@ -3,6 +3,7 @@ import type { District } from './types';
 
 export const badlands: District = {
   name: "As Terras Baldias (Badlands): O Deserto Sem Lei",
+  iconName: "MountainSnow",
   gradient: "linear-gradient(to right, #8B4513, #DAA520)",
   titleColorClass: "text-white",
   borderColor: "#8B4513",

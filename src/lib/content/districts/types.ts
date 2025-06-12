@@ -7,4 +7,5 @@ export interface District {
   paragraphs: string[];
   dominantGangs?: string[];
   majorCorporations?: string[];
+  iconName?: string; // Optional: Lucide icon name
 }

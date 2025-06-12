@@ -3,6 +3,7 @@ import type { Corporation } from './types';
 
 export const arasaka: Corporation = {
   name: "Arasaka: O Império do Aço, do Dinheiro e da Informação",
+  iconName: "ShieldAlert",
   introduction: "A Arasaka é, sem sombra de dúvidas, a megacorporação mais poderosa e influente do mundo em 2077, rivalizando apenas com a Militech. Mas, enquanto a Militech é focada em poderio militar \"tradicional\", a Arasaka é um monstro tentacular que domina segurança, serviços bancários, manufatura e, acima de tudo, informação e controle. Pensa numa corporação que é quase um país, com seu próprio exército, bancos e leis. É a Arasaka.",
   headerBackgroundColor: "#000000",
   accentColor: "#FF0000",

@@ -2,17 +2,21 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Users } from "lucide-react";
+import { Users, Skull, Bike, HeartHandshake, Network, Shield, Flag, Dumbbell, Biohazard, Dog } from "lucide-react"; // Added more icons
 import { gangs, type Gang } from "@/lib/content/gangs";
+
+const iconMap: Record<string, React.ElementType> = {
+  Skull, Bike, HeartHandshake, Network, Shield, Flag, Dumbbell, Biohazard, Dog
+};
 
 const generateAnchorId = (title: string): string => {
   return title
     .toLowerCase()
-    .replace(/:/g, '') // Remove colons
-    .replace(/\(/g, '') // Remove opening parenthesis
-    .replace(/\)/g, '') // Remove closing parenthesis
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/[^\w-]+/g, ''); // Remove other non-alphanumeric characters except hyphens
+    .replace(/:/g, '') 
+    .replace(/\(/g, '') 
+    .replace(/\)/g, '') 
+    .replace(/\s+/g, '-') 
+    .replace(/[^\w-]+/g, ''); 
 };
 
 export default function GanguesPage() {
@@ -45,9 +49,11 @@ export default function GanguesPage() {
               </CardContent>
             </Card>
 
-            {gangs.map((gang: Gang, index: number) => (
+            {gangs.map((gang: Gang) => {
+              const GangIcon = gang.iconName ? iconMap[gang.iconName] : null;
+              return (
               <Card 
-                key={index} 
+                key={gang.name} 
                 id={generateAnchorId(gang.name)}
                 className="shadow-lg rounded-lg overflow-hidden border-2 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-xl"
                 style={{
@@ -56,9 +62,10 @@ export default function GanguesPage() {
                 }}
               >
                 <CardHeader 
-                  className="p-6"
+                  className="p-6 flex flex-row items-center gap-3" // Added flex for icon
                   style={{ background: gang.gradient || defaultGradient }}
                 >
+                  {GangIcon && <GangIcon className="h-7 w-7" style={{ color: gang.borderColor || defaultBorderColor }} />}
                   <CardTitle className={`font-headline text-2xl sm:text-3xl ${gang.titleColorClass || defaultTitleColorClass}`}>
                     {gang.name}
                   </CardTitle>
@@ -82,12 +89,11 @@ export default function GanguesPage() {
                   ))}
                 </CardContent>
               </Card>
-            ))}
+              );
+            })}
           </div>
         </ScrollArea>
       </main>
     </div>
   );
 }
-
-    

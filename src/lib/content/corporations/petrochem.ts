@@ -3,9 +3,10 @@ import type { Corporation } from './types';
 
 export const petrochem: Corporation = {
   name: "Petrochem: O Império Líquido da Energia e dos Produtos Essenciais",
+  iconName: "Factory",
   introduction: "A Petrochem é uma megacorporação global especializada em petróleo, produtos químicos e energia. Ela é o pilar invisível da economia de Night City e do mundo. Enquanto outras corporações brigam por controle de armas e informação, a Petrochem controla a fonte de tudo: combustíveis, plásticos, fertilizantes, produtos farmacêuticos e até mesmo a água potável em muitas regiões. Pensa neles como a \"OPEP do futuro\", só que muito mais poderosa e com o próprio exército.",
   headerBackgroundColor: "#000000",
-  accentColor: "#FFFFFF",
+  accentColor: "#FFFFFF", // White for contrast, as they are a bit "faceless"
   sections: [
     {
       title: "História e Formação: Do Ouro Negro ao Domínio da Vida",

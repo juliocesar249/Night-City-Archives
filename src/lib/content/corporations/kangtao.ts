@@ -3,6 +3,7 @@ import type { Corporation } from './types';
 
 export const kangTao: Corporation = {
   name: "Kang Tao: A Ascensão do Dragão e o Domínio das Armas Inteligentes",
+  iconName: "Cpu",
   introduction: "A Kang Tao é uma megacorporação de origem chinesa que emergiu como uma das principais forças no cenário global de armas e segurança em 2077. Diferente da Militech (força bruta) e da Arasaka (segurança onipresente), a Kang Tao se especializa em um tipo muito particular de armamento: armas inteligentes e tecnologia avançada de reconhecimento. Eles representam o poder e a sofisticação da indústria bélica asiática em ascensão.",
   headerBackgroundColor: "#000000",
   accentColor: "#D97400",

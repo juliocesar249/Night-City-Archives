@@ -3,6 +3,7 @@ import type { District } from './types';
 
 export const westbrook: District = {
   name: "Westbrook: O Luxo Deteriorado e a Ordem dos Tyger Claws",
+  iconName: "Home", // Placeholder for a luxury/entertainment icon
   gradient: "linear-gradient(to right, #3D009E, #000000)",
   titleColorClass: "text-primary",
   borderColor: "#3D009E",

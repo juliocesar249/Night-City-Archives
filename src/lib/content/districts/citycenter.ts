@@ -3,6 +3,7 @@ import type { District } from './types';
 
 export const cityCenter: District = {
   name: "City Center: O Coração de Neon do Poder Corporativo",
+  iconName: "Building2",
   gradient: "linear-gradient(to right, #EAFF00, #6E7800)",
   titleColorClass: "text-black",
   borderColor: "#EAFF00",

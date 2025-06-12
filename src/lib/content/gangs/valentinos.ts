@@ -3,6 +3,7 @@ import type { Gang } from './types';
 
 export const valentinos: Gang = {
   name: "Valentinos: Honra, Fé e Sangue nas Ruas de Heywood",
+  iconName: "HeartHandshake",
   borderColor: "#E6DC22",
   glowColor: "#E6DC22",
   gradient: "linear-gradient(to right, #E6DC22, #E05200)",

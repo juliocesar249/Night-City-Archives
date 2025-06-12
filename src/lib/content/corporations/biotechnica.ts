@@ -3,6 +3,7 @@ import type { Corporation } from './types';
 
 export const biotechnica: Corporation = {
   name: "Biotechnica: O Império da Vida Sintética e da Biotecnologia",
+  iconName: "FlaskConical",
   introduction: "A Biotechnica é uma megacorporação global líder nos campos da biotecnologia, engenharia genética e agricultura sintética. Eles são os arquitetos do futuro da alimentação, medicina e até mesmo da evolução humana. Enquanto outras corporações dominam o hardware e a energia, a Biotechnica controla o software da vida, mexendo com genes, cultivando alimentos em laboratório e desenvolvendo novas formas de bioprocessamento. Pensa neles como os \"fazendeiros\" e \"médicos\" do futuro, só que com um poder que pode redefinir o que significa ser vivo.",
   headerBackgroundColor: "#053838",
   accentColor: "#048000",

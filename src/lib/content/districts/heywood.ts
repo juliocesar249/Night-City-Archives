@@ -3,6 +3,7 @@ import type { District } from './types';
 
 export const heywood: District = {
   name: "Heywood: A Alma Multifacetada de Night City",
+  iconName: "Home", // Generic home as it's very residential
   gradient: "linear-gradient(to right, #FF6A00, #000000)",
   titleColorClass: "text-primary",
   borderColor: "#FF6A00",

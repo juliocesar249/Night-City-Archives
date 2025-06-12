@@ -3,6 +3,7 @@ import type { District } from './types';
 
 export const pacifica: District = {
   name: "Pacifica: O Paraíso Esquecido, Vazio e Perigoso",
+  iconName: "BarChartBig", // Placeholder for resort/abandoned icon
   gradient: "linear-gradient(to right, #6992CF, #000000)",
   titleColorClass: "text-primary",
   borderColor: "#6992CF",

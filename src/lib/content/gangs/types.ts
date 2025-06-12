@@ -12,4 +12,5 @@ export interface Gang {
   titleColorClass: string;
   introduction: string;
   sections: GangSection[];
+  iconName?: string; // Optional: Lucide icon name
 }
