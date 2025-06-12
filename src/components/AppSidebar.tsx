@@ -17,6 +17,8 @@ import { Separator } from "@/components/ui/separator";
 import { districts, type District } from "@/lib/content/districts";
 import { gangs, type Gang } from "@/lib/content/gangs";
 import { corporations, type Corporation } from "@/lib/content/corporations";
+import { useToast } from "@/hooks/use-toast";
+import { getLoreDataShard } from "@/app/actions/loreActions";
 
 const generateAnchorId = (title: string): string => {
   return title
@@ -31,6 +33,8 @@ const generateAnchorId = (title: string): string => {
 export function AppSidebar() {
   const { open, isMobile, setOpenMobile } = useSidebar();
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const { toast } = useToast();
+  const [isGeneratingShard, setIsGeneratingShard] = useState(false);
 
   const toggleSection = (label: string) => {
     setExpandedSections(prev => ({ ...prev, [label]: !prev[label] }));
@@ -71,7 +75,7 @@ export function AppSidebar() {
       icon: Building,
       subItems: corporations.map(c => ({ label: c.name.split(":")[0], href: `#${generateAnchorId(c.name)}`}))
     },
-    { href: "/datashard", label: "Data Shard", icon: Database },
+    { href: "/datashard", label: "Terminal de Inteligência", icon: Database },
   ];
 
   const handleSubItemClick = () => {
@@ -80,7 +84,6 @@ export function AppSidebar() {
     }
   };
 
-  // Effect to load expanded sections from localStorage
   useEffect(() => {
     const storedExpandedSections = localStorage.getItem("expandedSidebarSections");
     if (storedExpandedSections) {
@@ -88,11 +91,9 @@ export function AppSidebar() {
     }
   }, []);
 
-  // Effect to save expanded sections to localStorage
   useEffect(() => {
     localStorage.setItem("expandedSidebarSections", JSON.stringify(expandedSections));
   }, [expandedSections]);
-
 
   return (
     <>
@@ -129,7 +130,11 @@ export function AppSidebar() {
                         className: "bg-primary text-primary-foreground",
                       }}
                       className="w-full justify-start"
-                      onClick={item.subItems && isMobile ? (e) => { e.preventDefault(); toggleSection(item.label); } : (isMobile ? () => setOpenMobile(false) : undefined) }
+                      onClick={
+                        item.subItems && isMobile 
+                        ? (e) => { e.preventDefault(); toggleSection(item.label); } 
+                        : (isMobile ? () => setOpenMobile(false) : undefined)
+                      }
                     >
                       <item.icon className="mr-2 h-5 w-5" />
                       <span>{item.label}</span>
@@ -183,4 +188,3 @@ export function AppSidebar() {
     </>
   );
 }
-
