@@ -20,8 +20,7 @@ export default function DistritosPage() {
         <ScrollArea className="w-full h-[calc(100vh-100px)]">
           <div className="w-full max-w-4xl mx-auto space-y-8">
             <Card 
-              className="shadow-xl border-2 rounded-lg overflow-hidden"
-              style={{ borderColor: 'hsl(var(--primary-foreground))' }}
+              className="shadow-xl border-2 border-foreground rounded-lg overflow-hidden"
             >
               <CardHeader className="bg-card-foreground p-6">
                 <CardTitle className="font-headline text-3xl sm:text-4xl text-center text-primary">Explorando os Territórios de Night City</CardTitle>
