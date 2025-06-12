@@ -2,7 +2,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Home } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Home, Users, Building, ArrowRight } from "lucide-react";
 
 export default function HistoriaPage() {
   const pageTitle = "A História de Night City";
@@ -31,6 +33,28 @@ export default function HistoriaPage() {
         "Depois da guerra, Night City se reerguê das cinzas, mas de um jeito bem diferente. As megacorporações continuaram no poder, mas agora de forma mais \"sofisticada\". Em vez de bombas, elas usavam o poder econômico e a influência política para controlar a cidade. A reconstrução foi um trabalho árduo, e corporações como a Trauma Team International, uma espécie de paramédicos de elite, ganharam destaque por salvar vidas (ou pelo menos tentar) em meio ao caos.",
         "A cidade foi dividida em diversos distritos, cada um com sua própria vibe e seus próprios problemas, como Watson, Heywood, Westbrook, Santo Domingo, Pacifica, o City Center e Dogtown, onde o poder real reside."
       ]
+    },
+    {
+      title: "As Megacorporações: Os Verdadeiros Donos de Night City",
+      content: [
+        "Em Night City, o governo é uma piada. Quem manda de verdade são as megacorporações. Elas controlam tudo: a economia, a tecnologia, a mídia, a segurança e até mesmo a vida das pessoas. É como se fossem países dentro de um país, só que sem nenhuma responsabilidade social. As gigantes como Arasaka, Militech, Kang Tao, Zetatech, Biocorp e a Trauma Team International ditam as regras."
+      ],
+      button: {
+        text: "Conheça as Corporações",
+        href: "/corporacoes",
+        icon: <Building className="mr-2 h-4 w-4" />
+      }
+    },
+    {
+      title: "As Gangues: O Submundo de Night City",
+      content: [
+        "Com tanta opressão corporativa, a criminalidade explode. As gangues são a resposta da população à falta de oportunidades e à violência das megacorporações. Elas controlam territórios, traficam drogas, armas e cibernéticos ilegais. Cada gangue tem sua própria ideologia, estilo e especialização."
+      ],
+      button: {
+        text: "Explore as Gangues",
+        href: "/gangues",
+        icon: <Users className="mr-2 h-4 w-4" />
+      }
     },
     {
       title: "Night City em 2077: O Estado Atual",
@@ -75,6 +99,17 @@ export default function HistoriaPage() {
                       {paragraph}
                     </p>
                   ))}
+                  {section.button && (
+                    <div className="flex justify-start mt-4">
+                      <Button asChild variant="outline" className="border-accent hover:bg-accent hover:text-accent-foreground transition-colors duration-300">
+                        <Link href={section.button.href}>
+                          {section.button.icon}
+                          {section.button.text}
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             ))}
@@ -84,5 +119,3 @@ export default function HistoriaPage() {
     </div>
   );
 }
-
-    
