@@ -8,12 +8,16 @@ export interface Corporation {
   name: string;
   introduction: string;
   sections: CorporationSection[];
+  headerBackgroundColor: string;
+  accentColor: string;
 }
 
 export const corporations: Corporation[] = [
   {
     name: "Arasaka: O Império do Aço, do Dinheiro e da Informação",
     introduction: "A Arasaka é, sem sombra de dúvidas, a megacorporação mais poderosa e influente do mundo em 2077, rivalizando apenas com a Militech. Mas, enquanto a Militech é focada em poderio militar \"tradicional\", a Arasaka é um monstro tentacular que domina segurança, serviços bancários, manufatura e, acima de tudo, informação e controle. Pensa numa corporação que é quase um país, com seu próprio exército, bancos e leis. É a Arasaka.",
+    headerBackgroundColor: "#000000",
+    accentColor: "#FF0000",
     sections: [
       {
         title: "História e Formação: Do Samurai ao Megalomaníaco",
@@ -94,6 +98,8 @@ export const corporations: Corporation[] = [
   {
     name: "Militech: A Máquina de Guerra Americana e o Símbolo do Poder Militar",
     introduction: "A Militech é a maior e mais poderosa corporação militar dos Novos Estados Unidos da América (NUSA) e uma das maiores do mundo, rivalizando apenas com a Arasaka. Enquanto a Arasaka é o poder da informação e da segurança onipresente, a Militech é a guerra em si. Eles fabricam tudo que mata: armas, veículos militares, blindagens, drones, mercenários e até estratégias de combate. São a personificação do complexo militar-industrial.",
+    headerBackgroundColor: "#000000",
+    accentColor: "#F7FF00",
     sections: [
       {
         title: "História e Formação: Do Sonho de Guerra à Guerra como Negócio",
@@ -168,6 +174,8 @@ export const corporations: Corporation[] = [
   {
     name: "Kang Tao: A Ascensão do Dragão e o Domínio das Armas Inteligentes",
     introduction: "A Kang Tao é uma megacorporação de origem chinesa que emergiu como uma das principais forças no cenário global de armas e segurança em 2077. Diferente da Militech (força bruta) e da Arasaka (segurança onipresente), a Kang Tao se especializa em um tipo muito particular de armamento: armas inteligentes e tecnologia avançada de reconhecimento. Eles representam o poder e a sofisticação da indústria bélica asiática em ascensão.",
+    headerBackgroundColor: "#000000",
+    accentColor: "#D97400",
     sections: [
       {
         title: "História e Formação: Da Manufatura Humilde à Inovação Letal",
@@ -236,6 +244,8 @@ export const corporations: Corporation[] = [
   {
     name: "Petrochem: O Império Líquido da Energia e dos Produtos Essenciais",
     introduction: "A Petrochem é uma megacorporação global especializada em petróleo, produtos químicos e energia. Ela é o pilar invisível da economia de Night City e do mundo. Enquanto outras corporações brigam por controle de armas e informação, a Petrochem controla a fonte de tudo: combustíveis, plásticos, fertilizantes, produtos farmacêuticos e até mesmo a água potável em muitas regiões. Pensa neles como a \"OPEP do futuro\", só que muito mais poderosa e com o próprio exército.",
+    headerBackgroundColor: "#000000",
+    accentColor: "#FFFFFF",
     sections: [
       {
         title: "História e Formação: Do Ouro Negro ao Domínio da Vida",
@@ -307,6 +317,8 @@ export const corporations: Corporation[] = [
   {
     name: "Biotechnica: O Império da Vida Sintética e da Biotecnologia",
     introduction: "A Biotechnica é uma megacorporação global líder nos campos da biotecnologia, engenharia genética e agricultura sintética. Eles são os arquitetos do futuro da alimentação, medicina e até mesmo da evolução humana. Enquanto outras corporações dominam o hardware e a energia, a Biotechnica controla o software da vida, mexendo com genes, cultivando alimentos em laboratório e desenvolvendo novas formas de bioprocessamento. Pensa neles como os \"fazendeiros\" e \"médicos\" do futuro, só que com um poder que pode redefinir o que significa ser vivo.",
+    headerBackgroundColor: "#005944",
+    accentColor: "#048000",
     sections: [
       {
         title: "História e Formação: Do Alimento Básico à Manipulação Genética",
@@ -378,6 +390,8 @@ export const corporations: Corporation[] = [
   {
     name: "Night Corp: A Fundação, a Gestora e a Verdadeira Dona de Night City",
     introduction: "A Night Corp não é uma megacorporação como a Arasaka ou a Militech que opera globalmente em vários setores. Ela é uma corporação singular, criada com um propósito muito específico: planejar, construir, gerenciar e controlar Night City. Ela é a empresa que detém a maioria dos direitos de propriedade, a infraestrutura, e, em grande parte, a própria governança da cidade. Pensa neles como a \"prefeitura\" mais poderosa, lucrativa e corporativa que você pode imaginar.",
+    headerBackgroundColor: "#000000",
+    accentColor: "#FFFFFF",
     sections: [
       {
         title: "História e Formação: O Sonho (e Pesadelo) de Richard Night",
@@ -449,6 +463,8 @@ export const corporations: Corporation[] = [
   {
     name: "Zetatech: A Inovação Invisível e o Domínio do Software e da IA",
     introduction: "A Zetatech é uma megacorporação global que não grita \"poder\" como a Arasaka ou a Militech, mas é uma força gigantesca e silenciosa nos bastidores do mundo de 2077. Ela é especializada em software, inteligência artificial (IA), robótica avançada, eletrônicos de consumo de ponta e pesquisa em netrunning. Pensa neles como a \"Microsoft\" ou a \"Google\" do futuro, mas com um toque muito mais sombrio e com tentáculos que chegam em quase tudo que é digital.",
+    headerBackgroundColor: "#000000",
+    accentColor: "#FFFFFF",
     sections: [
       {
         title: "História e Formação: Do Código ao Controle Digital",
@@ -520,6 +536,8 @@ export const corporations: Corporation[] = [
   {
     name: "NetWatch: Os Guardiões da Nova Net e o Caçador de Ciberameaças",
     introduction: "A NetWatch não é uma corporação no sentido tradicional de vender produtos tangíveis como armas ou comida. Ela é uma agência global de segurança cibernética e regulamentação da rede, criada para policiar e proteger a Nova Net – o que sobrou da internet global após o colapso do antigo Net. Eles são a \"lei e a ordem\" no mundo digital, caçando hackers, terroristas cibernéticos, inteligências artificiais renegadas e qualquer um que ameace a estabilidade do ciberespaço.",
+    headerBackgroundColor: "#000000",
+    accentColor: "#FFAA00",
     sections: [
       {
         title: "História e Formação: Do Caos à Ordem (Digital)",
@@ -591,6 +609,8 @@ export const corporations: Corporation[] = [
   {
     name: "Trauma Team International: O Resgate de Elite, Onde o Dinheiro Compra a Vida",
     introduction: "A Trauma Team International não é uma corporação que produz armas ou energia, ela produz segurança e tratamento médico emergencial de altíssimo nível, para quem pode pagar. Eles são paramédicos de elite, fortemente armados e com tecnologia de ponta, que operam em cenários de combate para resgatar e estabilizar seus clientes – e só seus clientes. Pensa numa equipe de SWAT com médicos. É a Trauma Team.",
+    headerBackgroundColor: "#005396",
+    accentColor: "#FF0000",
     sections: [
       {
         title: "História e Formação: Da Necessidade ao Luxo Vital",
@@ -655,5 +675,3 @@ export const corporations: Corporation[] = [
     ]
   }
 ];
-
-    

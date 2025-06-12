@@ -33,13 +33,20 @@ export default function CorporacoesPage() {
             {corporations.map((corp: Corporation, index: number) => (
               <Card 
                 key={index} 
-                className="shadow-lg border-primary rounded-lg overflow-hidden"
-                style={{ boxShadow: `0 0 10px 2px hsl(var(--primary))` }}
+                className="shadow-lg border-2 rounded-lg overflow-hidden"
+                style={{ 
+                  borderColor: corp.accentColor, 
+                  boxShadow: `0 0 10px 2px ${corp.accentColor}` 
+                }}
               >
                 <CardHeader 
-                  className="bg-black p-6"
+                  className="p-6"
+                  style={{ backgroundColor: corp.headerBackgroundColor }}
                 >
-                  <CardTitle className="font-headline text-2xl sm:text-3xl text-primary">
+                  <CardTitle 
+                    className="font-headline text-2xl sm:text-3xl"
+                    style={{ color: corp.accentColor }}
+                  >
                     {corp.name}
                   </CardTitle>
                 </CardHeader>
@@ -48,7 +55,8 @@ export default function CorporacoesPage() {
                   {corp.sections.map((section, sIndex) => (
                     <div key={sIndex} className="mt-4">
                       <h3 
-                        className="font-headline text-xl mb-2 text-primary"
+                        className="font-headline text-xl mb-2"
+                        style={{ color: corp.accentColor }}
                       >
                         {section.title}
                       </h3>
@@ -68,5 +76,3 @@ export default function CorporacoesPage() {
     </div>
   );
 }
-
-    
