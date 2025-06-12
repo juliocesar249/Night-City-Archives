@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Loader2, Database, AlertTriangle, RefreshCw, Newspaper, ListChecks, Brain, Check, X } from "lucide-react";
+import { Loader2, Database, AlertTriangle, RefreshCw, Newspaper, Brain, Check, X } from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { getLoreDataShard, getNightCityQuiz, getNightCityNews } from "@/app/actions/loreActions";
 import type { QuizOutput, QuizItem as RawQuizItem } from '@/ai/flows/quiz-flow';
@@ -47,7 +47,8 @@ export default function DataShardPage() {
   const [isNewsLoading, setIsNewsLoading] = useState(false);
   const [newsError, setNewsError] = useState<string | null>(null);
   
-  const clearPreviousContent = () => {
+  const clearPreviousContent = (newActiveContent: ActiveContentType) => {
+    setActiveContent(newActiveContent);
     setLoreSnippet(null);
     setLoreError(null);
     setQuizData(null);
@@ -60,9 +61,8 @@ export default function DataShardPage() {
   };
 
   const fetchLoreSnippet = useCallback(async () => {
-    clearPreviousContent();
+    clearPreviousContent("shard");
     setIsLoreLoading(true);
-    setActiveContent("shard");
     try {
       const newShard = await getLoreDataShard();
       setLoreSnippet(newShard);
@@ -75,9 +75,8 @@ export default function DataShardPage() {
   }, []);
 
   const fetchQuiz = async () => {
-    clearPreviousContent();
+    clearPreviousContent("quiz");
     setIsQuizLoading(true);
-    setActiveContent("quiz");
     try {
       const newQuiz = await getNightCityQuiz();
       setQuizData(newQuiz);
@@ -97,9 +96,8 @@ export default function DataShardPage() {
   };
 
   const fetchNews = async () => {
-    clearPreviousContent();
+    clearPreviousContent("news");
     setIsNewsLoading(true);
-    setActiveContent("news");
     try {
       const newNews = await getNightCityNews();
       setNewsData(newNews);
@@ -136,16 +134,16 @@ export default function DataShardPage() {
       case "shard":
         if (loreError) {
           return (
-            <div className="mt-8 text-center text-destructive p-6 border border-destructive rounded-lg bg-destructive/10 w-full max-w-2xl mx-auto shadow-lg">
+            <Card className="mt-8 text-center text-destructive p-6 border border-destructive rounded-lg bg-destructive/10 w-full max-w-2xl mx-auto shadow-lg">
               <AlertTriangle className="h-12 w-12 mx-auto mb-4" />
               <h3 className="font-headline text-2xl mb-2">Erro de Transmissão</h3>
               <p className="text-md">{loreError}</p>
-            </div>
+            </Card>
           );
         }
         if (loreSnippet) {
           return (
-             <Card className="mt-8 w-full max-w-2xl mx-auto shadow-xl border-accent overflow-hidden">
+             <Card className="mt-8 w-full max-w-2xl mx-auto shadow-xl border-accent">
                 <CardHeader className="bg-accent/10 p-4">
                     <CardTitle className="text-accent text-2xl font-headline text-center">Data Shard Interceptado</CardTitle>
                 </CardHeader>
@@ -162,21 +160,21 @@ export default function DataShardPage() {
       case "quiz":
         if (quizError) {
           return (
-            <div className="mt-8 text-center text-destructive p-6 border border-destructive rounded-md bg-destructive/10 w-full max-w-2xl mx-auto shadow-lg">
+            <Card className="mt-8 text-center text-destructive p-6 border border-destructive rounded-md bg-destructive/10 w-full max-w-2xl mx-auto shadow-lg">
               <AlertTriangle className="h-12 w-12 mx-auto mb-4" />
               <h3 className="font-headline text-2xl mb-2">Erro na Geração do Quiz</h3>
               <p className="text-md">{quizError}</p>
-            </div>
+            </Card>
           );
         }
         if (quizData && shuffledQuizItems.length > 0) {
           return (
-            <Card className="mt-8 w-full max-w-3xl mx-auto shadow-xl border-primary overflow-hidden">
+            <Card className="mt-8 w-full max-w-3xl mx-auto shadow-xl border-primary">
                 <CardHeader className="bg-primary/10 p-4">
                     <CardTitle className="text-primary text-3xl font-headline text-center">{quizData.quizTitle}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-6">
-                    <ScrollArea className="w-full h-auto max-h-[calc(100vh-350px)] p-1"> {/* Adjusted max-height */}
+                    <ScrollArea className="w-full h-auto max-h-[65vh] p-1">
                       <div className="space-y-6">
                         {shuffledQuizItems.map((item, index) => (
                           <div key={index} className="p-4 border border-border rounded-lg bg-card/80 shadow-md">
@@ -236,16 +234,16 @@ export default function DataShardPage() {
       case "news":
         if (newsError) {
           return (
-            <div className="mt-8 text-center text-destructive p-6 border border-destructive rounded-md bg-destructive/10 w-full max-w-2xl mx-auto shadow-lg">
+            <Card className="mt-8 text-center text-destructive p-6 border border-destructive rounded-md bg-destructive/10 w-full max-w-2xl mx-auto shadow-lg">
               <AlertTriangle className="h-12 w-12 mx-auto mb-4" />
               <h3 className="font-headline text-2xl mb-2">Erro na Transmissão da N54</h3>
               <p className="text-md">{newsError}</p>
-            </div>
+            </Card>
           );
         }
         if (newsData) {
           return (
-            <Card className="mt-8 w-full max-w-2xl mx-auto shadow-xl border-secondary overflow-hidden">
+            <Card className="mt-8 w-full max-w-2xl mx-auto shadow-xl border-secondary">
                 <CardHeader className="bg-secondary/10 p-4">
                      <CardTitle className="text-secondary text-3xl font-headline text-center">N54 News Flash</CardTitle>
                 </CardHeader>
@@ -258,12 +256,15 @@ export default function DataShardPage() {
         }
         return null;
       default:
-        return (
+         if (!isLoading && !activeContent) {
+          return (
             <div className="mt-12 text-center">
                 <Database className="h-24 w-24 mx-auto text-muted-foreground/50 mb-4" />
                 <p className="text-xl text-muted-foreground">Selecione uma operação acima para iniciar a varredura.</p>
             </div>
-        );
+          );
+         }
+         return null;
     }
   };
 
@@ -287,7 +288,7 @@ export default function DataShardPage() {
         <div className="w-full max-w-3xl mx-auto flex flex-col sm:flex-row justify-around items-center gap-4 mb-8 p-4 border border-border rounded-lg bg-card/50 shadow-md">
             <Button
               onClick={fetchLoreSnippet}
-              disabled={isLoreLoading}
+              disabled={isLoading && activeContent !== 'shard'}
               variant="outline"
               size="lg"
               className="border-accent hover:bg-accent hover:text-accent-foreground transition-colors duration-300 group w-full sm:w-auto text-base py-3 px-6"
@@ -297,7 +298,7 @@ export default function DataShardPage() {
             </Button>
             <Button
               onClick={fetchQuiz}
-              disabled={isQuizLoading}
+              disabled={isLoading && activeContent !== 'quiz'}
               variant="outline"
               size="lg"
               className="border-primary hover:bg-primary hover:text-primary-foreground transition-colors duration-300 group w-full sm:w-auto text-base py-3 px-6"
@@ -307,7 +308,7 @@ export default function DataShardPage() {
             </Button>
             <Button
               onClick={fetchNews}
-              disabled={isNewsLoading}
+              disabled={isLoading && activeContent !== 'news'}
               variant="outline"
               size="lg"
               className="border-secondary hover:bg-secondary hover:text-secondary-foreground transition-colors duration-300 group w-full sm:w-auto text-base py-3 px-6"
@@ -317,10 +318,13 @@ export default function DataShardPage() {
             </Button>
         </div>
 
-        <div className="w-full flex-1">
+        <div className="w-full flex-1"> {/* This container will hold the dynamic content */}
             {renderDynamicContent()}
         </div>
       </main>
     </div>
   );
 }
+
+
+    
