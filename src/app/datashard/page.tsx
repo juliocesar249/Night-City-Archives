@@ -4,17 +4,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Loader2, Database, AlertTriangle, RefreshCw, Newspaper, Brain, Check, X } from "lucide-react";
+import { Loader2, Database, AlertTriangle, RefreshCw, Newspaper, Brain, Check, X, Ear } from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { getLoreDataShard, getNightCityQuiz, getNightCityNews } from "@/app/actions/loreActions";
+import { getLoreDataShard, getNightCityQuiz, getNightCityNews, getNightCityRumor } from "@/app/actions/loreActions";
 import type { QuizOutput, QuizItem as RawQuizItem } from '@/ai/flows/quiz-flow';
 import type { NewsOutput } from '@/ai/flows/news-flow';
+import type { RumorOutput } from '@/ai/flows/rumor-flow';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 
-type ActiveContentType = "shard" | "quiz" | "news" | null;
+type ActiveContentType = "shard" | "quiz" | "news" | "rumor" | null;
 
 interface QuizItem extends RawQuizItem {
   shuffledOptions: string[];
@@ -46,9 +47,12 @@ export default function DataShardPage() {
   const [newsData, setNewsData] = useState<NewsOutput | null>(null);
   const [isNewsLoading, setIsNewsLoading] = useState(false);
   const [newsError, setNewsError] = useState<string | null>(null);
+
+  const [rumorData, setRumorData] = useState<RumorOutput | null>(null);
+  const [isRumorLoading, setIsRumorLoading] = useState(false);
+  const [rumorError, setRumorError] = useState<string | null>(null);
   
-  const clearPreviousContentAndSetLoading = (newActiveContent: ActiveContentType) => {
-    setActiveContent(newActiveContent);
+  const clearPreviousContent = () => {
     setLoreSnippet(null);
     setLoreError(null);
     setQuizData(null);
@@ -58,14 +62,14 @@ export default function DataShardPage() {
     setQuizError(null);
     setNewsData(null);
     setNewsError(null);
-
-    if (newActiveContent === "shard") setIsLoreLoading(true);
-    if (newActiveContent === "quiz") setIsQuizLoading(true);
-    if (newActiveContent === "news") setIsNewsLoading(true);
+    setRumorData(null);
+    setRumorError(null);
   };
 
-  const fetchLoreSnippet = useCallback(async () => {
-    clearPreviousContentAndSetLoading("shard");
+  const fetchLoreSnippet = async () => {
+    clearPreviousContent();
+    setActiveContent("shard");
+    setIsLoreLoading(true);
     try {
       const newShard = await getLoreDataShard();
       setLoreSnippet(newShard);
@@ -75,10 +79,12 @@ export default function DataShardPage() {
     } finally {
       setIsLoreLoading(false);
     }
-  }, []);
+  };
 
   const fetchQuiz = async () => {
-    clearPreviousContentAndSetLoading("quiz");
+    clearPreviousContent();
+    setActiveContent("quiz");
+    setIsQuizLoading(true);
     try {
       const newQuiz = await getNightCityQuiz();
       setQuizData(newQuiz);
@@ -98,7 +104,9 @@ export default function DataShardPage() {
   };
 
   const fetchNews = async () => {
-    clearPreviousContentAndSetLoading("news");
+    clearPreviousContent();
+    setActiveContent("news");
+    setIsNewsLoading(true);
     try {
       const newNews = await getNightCityNews();
       setNewsData(newNews);
@@ -109,6 +117,21 @@ export default function DataShardPage() {
       setIsNewsLoading(false);
     }
   };
+
+  const fetchRumor = async () => {
+    clearPreviousContent();
+    setActiveContent("rumor");
+    setIsRumorLoading(true);
+    try {
+      const newRumor = await getNightCityRumor();
+      setRumorData(newRumor);
+    } catch (err: any) {
+      setRumorError(err.message || "Falha ao interceptar boatos. As fontes devem ter secado ou há muita interferência na rede.");
+      setRumorData(null);
+    } finally {
+      setIsRumorLoading(false);
+    }
+  };
   
   const handleAnswerSelection = (questionIndex: number, selectedOption: string) => {
     if (revealedAnswers[questionIndex]) return; 
@@ -116,17 +139,21 @@ export default function DataShardPage() {
     setRevealedAnswers(prev => ({ ...prev, [questionIndex]: true }));
   };
 
-  const isLoading = isLoreLoading || isQuizLoading || isNewsLoading;
+  const isLoading = isLoreLoading || isQuizLoading || isNewsLoading || isRumorLoading;
 
   const renderDynamicContent = () => {
-    if (isLoading) {
+    if (isLoading && activeContent) {
+      let loadingMessage = "Processando solicitação...";
+      if (isLoreLoading) loadingMessage = "Acessando arquivos de lore...";
+      if (isQuizLoading) loadingMessage = "Compilando simulação de conhecimento...";
+      if (isNewsLoading) loadingMessage = "Interceptando feed da N54...";
+      if (isRumorLoading) loadingMessage = "Escutando os sussurros da rua...";
+
       return (
         <div className="flex flex-col items-center text-center py-10 mt-8">
           <Loader2 className="h-16 w-16 text-primary animate-spin mb-6" />
-          <p className="text-xl text-muted-foreground">Processando solicitação...</p>
-          {isLoreLoading && <p className="text-md text-primary">Acessando arquivos de lore...</p>}
-          {isQuizLoading && <p className="text-md text-primary">Compilando simulação de conhecimento...</p>}
-          {isNewsLoading && <p className="text-md text-primary">Interceptando feed da N54...</p>}
+          <p className="text-xl text-muted-foreground">Carregando...</p>
+          <p className="text-md text-primary">{loadingMessage}</p>
         </div>
       );
     }
@@ -161,7 +188,7 @@ export default function DataShardPage() {
       case "quiz":
         if (quizError) {
           return (
-            <Card className="mt-8 text-center text-destructive p-6 border border-destructive rounded-md bg-destructive/10 w-full max-w-2xl mx-auto shadow-lg">
+            <Card className="mt-8 text-center text-destructive p-6 border border-destructive rounded-md bg-destructive/10 w-full max-w-3xl mx-auto shadow-lg">
               <AlertTriangle className="h-12 w-12 mx-auto mb-4" />
               <h3 className="font-headline text-2xl mb-2">Erro na Geração do Quiz</h3>
               <p className="text-md">{quizError}</p>
@@ -175,7 +202,7 @@ export default function DataShardPage() {
                     <CardTitle className="text-primary text-3xl font-headline text-center">{quizData.quizTitle}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-6">
-                    <ScrollArea className="w-full h-[600px] p-1"> {/* Explicit height */}
+                    <ScrollArea className="w-full h-[600px] p-1">
                       <div className="space-y-6">
                         {shuffledQuizItems.map((item, index) => (
                           <div key={index} className="p-4 border border-border rounded-lg bg-card/80 shadow-md">
@@ -256,6 +283,33 @@ export default function DataShardPage() {
           );
         }
         return null;
+      
+      case "rumor":
+        if (rumorError) {
+          return (
+            <Card className="mt-8 text-center text-destructive p-6 border border-destructive rounded-md bg-destructive/10 w-full max-w-2xl mx-auto shadow-lg">
+              <AlertTriangle className="h-12 w-12 mx-auto mb-4" />
+              <h3 className="font-headline text-2xl mb-2">Erro na Interceptação de Boatos</h3>
+              <p className="text-md">{rumorError}</p>
+            </Card>
+          );
+        }
+        if (rumorData) {
+          return (
+             <Card className="mt-8 w-full max-w-2xl mx-auto shadow-xl border-purple-500">
+                <CardHeader className="bg-purple-500/10 p-4">
+                    <CardTitle className="text-purple-400 text-2xl font-headline text-center">Sussurro da Rua Interceptado</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                    <blockquote className="text-lg sm:text-xl text-center text-foreground leading-relaxed p-4 border-l-4 border-purple-500 bg-purple-500/5 rounded-md shadow-inner">
+                        &quot;{rumorData.rumor}&quot;
+                    </blockquote>
+                </CardContent>
+             </Card>
+          );
+        }
+        return null;
+
       default:
          if (!isLoading && !activeContent) {
           return (
@@ -277,22 +331,22 @@ export default function DataShardPage() {
         <h1 className="text-xl font-semibold text-primary">Terminal de Inteligência</h1>
       </header>
       <main className="flex flex-1 flex-col items-center p-4 sm:p-8 bg-background">
-        <Card className="w-full max-w-3xl shadow-xl border-primary rounded-lg overflow-hidden transition-all duration-300 ease-in-out mb-8" style={{ boxShadow: `0 0 15px 3px hsl(var(--primary))` }}>
+        <Card className="w-full max-w-4xl shadow-xl border-primary rounded-lg overflow-hidden transition-all duration-300 ease-in-out mb-8" style={{ boxShadow: `0 0 15px 3px hsl(var(--primary))` }}>
           <CardHeader className="bg-card-foreground p-6 text-center">
             <CardTitle className="font-headline text-3xl sm:text-4xl text-primary">Centro de Dados de Night City</CardTitle>
             <CardDescription className="text-muted-foreground pt-2 text-md sm:text-lg">
-              Acesse fragmentos de lore, teste seus conhecimentos ou confira as últimas notícias da cidade.
+              Acesse fragmentos de lore, teste seus conhecimentos, confira as últimas notícias ou intercepte boatos das ruas.
             </CardDescription>
           </CardHeader>
         </Card>
 
-        <div className="w-full max-w-3xl mx-auto flex flex-col sm:flex-row justify-around items-center gap-4 mb-8 p-4 border border-border rounded-lg bg-card/50 shadow-md">
+        <div className="w-full max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-center gap-4 mb-8 p-4 border border-border rounded-lg bg-card/50 shadow-md">
             <Button
               onClick={fetchLoreSnippet}
               disabled={isLoading && activeContent !== 'shard'}
               variant="outline"
               size="lg"
-              className="border-accent hover:bg-accent hover:text-accent-foreground transition-colors duration-300 group w-full sm:w-auto text-base py-3 px-6"
+              className="border-accent hover:bg-accent hover:text-accent-foreground transition-colors duration-300 group w-full text-base py-3 px-6"
             >
               {isLoreLoading && activeContent === 'shard' ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <RefreshCw className="mr-2 h-5 w-5 group-hover:animate-spin" />}
               Gerar Data Shard
@@ -302,7 +356,7 @@ export default function DataShardPage() {
               disabled={isLoading && activeContent !== 'quiz'}
               variant="outline"
               size="lg"
-              className="border-primary hover:bg-primary hover:text-primary-foreground transition-colors duration-300 group w-full sm:w-auto text-base py-3 px-6"
+              className="border-primary hover:bg-primary hover:text-primary-foreground transition-colors duration-300 group w-full text-base py-3 px-6"
             >
               {isQuizLoading && activeContent === 'quiz' ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Brain className="mr-2 h-5 w-5" />}
               Gerar Quiz da Lore
@@ -312,21 +366,29 @@ export default function DataShardPage() {
               disabled={isLoading && activeContent !== 'news'}
               variant="outline"
               size="lg"
-              className="border-secondary hover:bg-secondary hover:text-secondary-foreground transition-colors duration-300 group w-full sm:w-auto text-base py-3 px-6"
+              className="border-secondary hover:bg-secondary hover:text-secondary-foreground transition-colors duration-300 group w-full text-base py-3 px-6"
             >
               {isNewsLoading && activeContent === 'news' ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Newspaper className="mr-2 h-5 w-5" />}
               Gerar Notícias N54
             </Button>
+            <Button
+              onClick={fetchRumor}
+              disabled={isLoading && activeContent !== 'rumor'}
+              variant="outline"
+              size="lg"
+              className="border-purple-500 hover:bg-purple-500 hover:text-white transition-colors duration-300 group w-full text-base py-3 px-6"
+            >
+              {isRumorLoading && activeContent === 'rumor' ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Ear className="mr-2 h-5 w-5" />}
+              Ouvir Boatos da Rua
+            </Button>
         </div>
 
-        <div className="w-full flex-1">
+        <div className="w-full flex-1 min-h-[320px]"> {/* Ensure this container can take up space */}
             {renderDynamicContent()}
         </div>
       </main>
     </div>
   );
 }
-
-    
 
     

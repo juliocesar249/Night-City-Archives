@@ -3,3 +3,5 @@
 import './flows/lore-snippet-flow';
 import './flows/quiz-flow';
 import './flows/news-flow';
+import './flows/rumor-flow';
+
