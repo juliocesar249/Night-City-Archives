@@ -13,7 +13,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Home, Map, Users, Building, Bot, Info } from "lucide-react"; // Added Info icon
+import { Home, Map, Users, Building, Bot, Info } from "lucide-react"; 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -22,8 +22,8 @@ export function AppSidebar() {
   const { open, toggleSidebar, isMobile } = useSidebar();
 
   const navItems = [
-    { href: "/", label: "Introdução", icon: Info }, // Changed Home to Info for better context
-    { href: "/historia", label: "História", icon: Home }, // Kept Home for História
+    { href: "/", label: "Introdução", icon: Info }, 
+    { href: "/historia", label: "História", icon: Home }, 
     { href: "/distritos", label: "Distritos", icon: Map },
     { href: "/gangues", label: "Gangues de Night City", icon: Users },
     { href: "/corporacoes", label: "Corporaçõs", icon: Building },
@@ -74,3 +74,5 @@ export function AppSidebar() {
     </>
   );
 }
+
+    
