@@ -8,59 +8,60 @@ body {
 }
 
 @layer base {
-  :root {
+  :root { /* Light Theme */
     --background: 0 0% 98%; /* Very Light Gray (almost white) */
-    --foreground: 0 0% 20%; /* Dark Gray for text */
-    
+    --foreground: 0 0% 15%; /* Darker Gray for text for better contrast */
+
     --card: 0 0% 100%; /* White */
-    --card-foreground: 0 0% 20%; /* Dark Gray for text on cards */
-    
+    --card-foreground: 0 0% 15%; /* Darker Gray for text on cards */
+
     --popover: 0 0% 100%; /* White */
-    --popover-foreground: 0 0% 20%;
-    
-    --primary: 210 70% 50%; /* Distinct Blue */
+    --popover-foreground: 0 0% 15%;
+
+    --primary: 220 70% 50%; /* A clear, standard Blue */
     --primary-foreground: 0 0% 100%; /* White text on primary blue */
-    
-    --secondary: 210 20% 92%; /* Light, cool gray */
-    --secondary-foreground: 0 0% 15%; /* Dark gray text on secondary */
-    
-    --muted: 210 20% 95%; /* Very light, cool gray */
-    --muted-foreground: 0 0% 45%; /* Medium gray for muted text */
-    
-    --accent: 45 90% 55%; /* Cyberpunk Gold/Yellow */
-    --accent-foreground: 0 0% 10%; /* Dark text on accent gold/yellow */
-    
-    --destructive: 0 84.2% 60.2%; /* Red */
+
+    --secondary: 220 15% 92%; /* Lighter, softer cool gray */
+    --secondary-foreground: 0 0% 20%; /* Dark gray text on secondary */
+
+    --muted: 220 15% 95%; /* Very light, soft cool gray */
+    --muted-foreground: 0 0% 40%; /* Medium gray for muted text */
+
+    --accent: 210 60% 65%;  /* A lighter, less saturated blue as accent - to be harmonious */
+    --accent-foreground: 0 0% 100%; /* White text for this lighter blue accent */
+
+    --destructive: 0 80% 60%; /* Standard Red */
     --destructive-foreground: 0 0% 98%; /* White text on red */
-    
-    --border: 0 0% 88%; /* Light gray border */
-    --input: 0 0% 92%; /* Slightly off-white input background */
-    --ring: 210 70% 60%; /* Slightly lighter blue for focus rings */
-    
-    --chart-1: 220 80% 55%; /* Blue */
-    --chart-2: 0 70% 55%;   /* Red */
-    --chart-3: 140 60% 45%; /* Green */
-    --chart-4: 40 90% 55%;  /* Orange */
-    --chart-5: 280 60% 60%; /* Purple */
-    
+
+    --border: 0 0% 85%; /* Slightly darker light gray border for more visibility */
+    --input: 0 0% 94%; /* Slightly darker off-white input background */
+    --ring: 220 70% 60%; /* Slightly lighter blue for focus rings */
+
+    --chart-1: 220 70% 50%; /* Blue */
+    --chart-2: 0 70% 60%;   /* Red */
+    --chart-3: 130 60% 45%; /* Green */
+    --chart-4: 35 85% 60%;  /* Orange */
+    --chart-5: 270 60% 60%; /* Purple */
+
     --radius: 0.5rem;
-    
-    /* Light theme sidebar colors */
-    --sidebar-background: 0 0% 96%; /* Light gray, slightly darker than main bg */
-    --sidebar-foreground: 0 0% 25%; /* Dark gray for text */
-    --sidebar-primary: 210 70% 45%; /* Distinct Blue (matches main primary, can be slightly darker) */
+
+    /* Light theme sidebar colors - aiming for clarity and less clash */
+    --sidebar-background: 220 20% 96%; /* Light cool gray */
+    --sidebar-foreground: 0 0% 20%;    /* Dark gray for text */
+    --sidebar-primary: 220 65% 45%;    /* Slightly darker primary blue for sidebar emphasis */
     --sidebar-primary-foreground: 0 0% 100%; /* White */
-    --sidebar-accent: 0 0% 90%; /* Medium-light Gray for accents/hovers */
+    --sidebar-accent: 220 15% 90%;     /* Very light gray for hovers */
     --sidebar-accent-foreground: 0 0% 15%; /* Dark gray text on sidebar accent */
-    --sidebar-border: 0 0% 85%; /* Border color for sidebar */
-    --sidebar-ring: 210 70% 55%; /* Ring color for focus states (blue) */
+    --sidebar-border: 220 15% 85%;     /* Border color for sidebar */
+    --sidebar-ring: 220 70% 55%;       /* Ring color for focus states (blue) */
   }
-  .dark {
-    --background: 222 84% 4.9%; /* Very Dark Blue (almost black) */
-    --foreground: 210 40% 98%; /* Light Grey/Off-white for text */
+
+  .dark { /* Dark Theme - this remains unchanged */
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
     
-    --card: 222 83.1% 6.1%; /* Darker blue, slightly lighter than background */
-    --card-foreground: 210 40% 98%; /* Light Grey/Off-white for card text */
+    --card: 222 83.1% 6.1%;
+    --card-foreground: 210 40% 98%;
     
     --popover: 222 83.1% 6.1%;
     --popover-foreground: 210 40% 98%;
@@ -71,36 +72,36 @@ body {
     --secondary: 180 100% 50%; /* Neon Cyan/Teal */
     --secondary-foreground: 222 84% 4.9%; /* Dark Blue text on cyan */
     
-    --muted: 217.2 32.6% 17.5%; /* Dark, muted blue */
-    --muted-foreground: 210 40% 60%; /* Lighter, muted gray for less important text */
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 210 40% 60%;
     
     --accent: 330 100% 54.9%; /* Neon Pink/Magenta */
     --accent-foreground: 0 0% 100%; /* White text on pink */
     
-    --destructive: 0 72.2% 50.6%; /* Vivid Red */
-    --destructive-foreground: 0 0% 100%; /* White text on red */
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 0 0% 100%;
     
-    --border: 217.2 32.6% 22.5%; /* Darker blue for borders */
-    --input: 217.2 32.6% 17.5%; /* Dark input background */
-    --ring: 51 100% 55%; /* Slightly more intense yellow for focus rings */
+    --border: 217.2 32.6% 22.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 51 100% 55%;
     
-    --chart-1: 180 100% 50%; /* Cyan */
-    --chart-2: 300 100% 65%; /* Magenta */
-    --chart-3: 50 100% 50%; /* Yellow */
-    --chart-4: 240 100% 70%; /* Bright Blue */
-    --chart-5: 120 100% 50%; /* Green */
+    --chart-1: 180 100% 50%;
+    --chart-2: 300 100% 65%;
+    --chart-3: 50 100% 50%;
+    --chart-4: 240 100% 70%;
+    --chart-5: 120 100% 50%;
     
     --radius: 0.5rem;
 
     /* Dark theme sidebar colors */
-    --sidebar-background: 222 80% 7%; /* Slightly lighter dark blue for sidebar bg */
-    --sidebar-foreground: 210 40% 85%; /* Lighter gray for sidebar text */
-    --sidebar-primary: 51 100% 50%; /* Cyberpunk Yellow for primary elements */
-    --sidebar-primary-foreground: 222 84% 4.9%; /* Dark blue text on yellow */
-    --sidebar-accent: 222 70% 10%; /* Darker, slightly desaturated blue for accents */
-    --sidebar-accent-foreground: 210 40% 95%; /* Very light gray for text on accent */
-    --sidebar-border: 222 70% 12%; /* Border for sidebar elements */
-    --sidebar-ring: 51 100% 55%; /* Yellow ring for focus states */
+    --sidebar-background: 222 80% 7%;
+    --sidebar-foreground: 210 40% 85%;
+    --sidebar-primary: 51 100% 50%;
+    --sidebar-primary-foreground: 222 84% 4.9%;
+    --sidebar-accent: 222 70% 10%;
+    --sidebar-accent-foreground: 210 40% 95%;
+    --sidebar-border: 222 70% 12%;
+    --sidebar-ring: 51 100% 55%;
   }
 }
 
