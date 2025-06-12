@@ -27,8 +27,8 @@ export default function DistritosPage() {
     },
     {
       name: "Westbrook: O Luxo Deteriorado e a Ordem dos Tyger Claws",
-      gradient: "linear-gradient(to right, #2700C2, #000000)",
-      titleColorClass: "text-primary", // Yellow text on Blue/Black
+      gradient: "linear-gradient(to right, #3D009E, #000000)",
+      titleColorClass: "text-primary", 
       paragraphs: [
         "Westbrook é o distrito que mais se aproxima do ideal de Richard Night para uma utopia de luxo e entretenimento, mas com o tempero distópico e perigoso de Night City. É o playground dos ricos, das celebridades e dos executivos corporativos, mas também é um lugar onde a influência das megacorporações se mistura com o domínio implacável dos Tyger Claws. Sua história é a de uma área que ascendeu rapidamente ao topo, mas que por baixo da superfície polida, esconde uma rede complexa de controle, poder e decadência.",
         "Desde o planejamento original de Night City, Westbrook foi destinada a ser a área de alto padrão. Com investimentos massivos de corporações como a Arasaka e outras empresas de entretenimento e tecnologia, o distrito se desenvolveu rapidamente, com construções de luxo, condomínios exclusivos e centros de lazer de última geração. A ideia era criar um refúgio para a elite, longe do caos dos distritos mais pobres, onde o estilo de vida ostentoso fosse a regra.",
@@ -47,7 +47,7 @@ export default function DistritosPage() {
     {
       name: "City Center: O Coração de Neon do Poder Corporativo",
       gradient: "linear-gradient(to right, #EAFF00, #6E7800)",
-      titleColorClass: "text-black", // Black text on Yellow/Dark Yellow-Green
+      titleColorClass: "text-black", 
       paragraphs: [
         "O City Center é o cérebro, o coração e a carteira de Night City, tudo em um só lugar. É o distrito que grita \"poder e grana\" em cada arranha-céu que toca as nuvens. Se Night City é uma distopia cyberpunk, o City Center é a sua versão mais pura e brutal, onde as megacorporações exercem seu domínio absoluto.",
         "Desde o início do projeto de Richard Night, a área que se tornaria o City Center foi destinada a ser o centro de poder e negócios. Durante os anos 1980 e 1990, com o crescimento exponencial das megacorporações, o City Center se transformou rapidamente em uma selva de concreto e vidro. A Arasaka e a Militech estabeleceram suas sedes aqui, transformando o horizonte em uma vitrine de sua competição.",
@@ -65,8 +65,8 @@ export default function DistritosPage() {
     },
     {
       name: "Heywood: A Alma Multifacetada de Night City",
-      gradient: "linear-gradient(to right, #FF6A00, #FDFF6B)",
-      titleColorClass: "text-black", // Black text on Orange/Light Yellow
+      gradient: "linear-gradient(to right, #FF6A00, #000000)",
+      titleColorClass: "text-primary", 
       paragraphs: [
         "Heywood é o distrito mais populoso de Night City, um verdadeiro mosaico social e cultural que espelha as vastas desigualdades da metrópole. Abriga desde luxuosos condomínios corporativos até favelas humildes. É onde a maioria dos cidadãos comuns de Night City vive e luta.",
         "Heywood se desenvolveu como uma área residencial e comercial, atraindo uma vasta gama de classes sociais devido à sua localização estratégica, adjacente ao City Center, mas com custos mais acessíveis. O crescimento foi orgânico, resultando em arquitetura diversa.",
@@ -81,8 +81,8 @@ export default function DistritosPage() {
     },
     {
       name: "Santo Domingo: O Motor Industrial e o Caldeirão de Classes",
-      gradient: "linear-gradient(to right, #4599FF, #E30000)",
-      titleColorClass: "text-primary", // Yellow text on Blue/Red
+      gradient: "linear-gradient(to right, #4599FF, #000000)",
+      titleColorClass: "text-primary", 
       paragraphs: [
         "Santo Domingo é o pulmão e o músculo de Night City, o distrito industrial e de moradias populares que mantém a cidade funcionando. É onde a maior parte da produção industrial e infraestrutura pesada está localizada. É um lugar de trabalho duro, vida operária, mas também de conflitos, poluição e decadência.",
         "Desde os primórdios, Santo Domingo foi designada para indústria pesada. Sua proximidade com o porto e vias de transporte a tornou ideal para fábricas, refinarias e usinas, impulsionada por megacorporações como a Petrochem.",
@@ -97,8 +97,8 @@ export default function DistritosPage() {
     },
     {
       name: "Pacifica: O Paraíso Esquecido, Vazio e Perigoso",
-      gradient: "linear-gradient(to right, #C2C2C2, #000000)",
-      titleColorClass: "text-primary", // Yellow text on Grey/Black
+      gradient: "linear-gradient(to right, #6992CF, #000000)",
+      titleColorClass: "text-primary", 
       paragraphs: [
         "Pacifica é a personificação do fracasso dos sonhos e promessas quebradas em Night City. Originalmente concebido como um mega-resort de luxo, transformou-se em uma vasta e perigosa favela, dominada pela criminalidade e ausência de lei.",
         "Nos anos 2060, Pacifica começou a ser desenvolvida como destino turístico de ponta, com investimentos em hotéis e shoppings. A crise econômica e as Guerras Corporativas fizeram com que os investimentos fossem retirados, abandonando o projeto e seus trabalhadores.",
@@ -112,8 +112,8 @@ export default function DistritosPage() {
     },
     {
       name: "Dogtown: O Feudo Anárquico do Coronel Hansen",
-      gradient: "linear-gradient(to right, #21FF42, #B80000)",
-      titleColorClass: "text-black", // Black text on Bright Green/Dark Red
+      gradient: "linear-gradient(to right, #5CBA57, #000000)",
+      titleColorClass: "text-primary", 
       paragraphs: [
         "Dogtown é mais que um subdistrito; é um estado dentro de um estado, uma anomalia anárquica e fortificada no que um dia foi Pacifica. Ilustra a falência do governo e o poder dos militares.",
         "Assim como Pacifica, Dogtown era parte do plano de paraíso turístico, incluindo o EBM Petrochem Stadium. O colapso econômico deixou construções inacabadas.",
@@ -128,8 +128,8 @@ export default function DistritosPage() {
     },
     {
       name: "As Terras Baldias (Badlands): O Deserto Sem Lei",
-      gradient: "linear-gradient(to right, #FFF0A6, #000000)",
-      titleColorClass: "text-black", // Black text on Light Yellow/Black
+      gradient: "linear-gradient(to right, #000000, #000000)",
+      titleColorClass: "text-primary", 
       paragraphs: [
         "As Terras Baldias (Badlands) não são um distrito urbano, mas uma vasta e desolada região que cerca Night City, seu subúrbio mais selvagem. São o domínio das Famílias Nômades, grupos itinerantes que vivem fora do sistema corporativo.",
         "Originalmente desertos e terras agrícolas, a expansão urbana, poluição e desastres ambientais transformaram a área em um deserto árido e tóxico. Após o colapso econômico, muitos abandonaram as cidades e formaram as primeiras Famílias Nômades, buscando liberdade e autossuficiência.",
