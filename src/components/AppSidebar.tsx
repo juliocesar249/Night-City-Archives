@@ -12,10 +12,8 @@ import {
   SidebarFooter,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Home, Map, Users, Building, Bot, Info, Database, Loader2, ChevronDown, ChevronRight } from "lucide-react";
+import { Home, Map, Users, Building, Info, Database, ChevronDown, ChevronRight } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { useToast } from "@/hooks/use-toast";
-import { getLoreDataShard } from "@/app/actions/loreActions";
 import { districts, type District } from "@/lib/content/districts";
 import { gangs, type Gang } from "@/lib/content/gangs";
 import { corporations, type Corporation } from "@/lib/content/corporations";
@@ -32,30 +30,7 @@ const generateAnchorId = (title: string): string => {
 
 export function AppSidebar() {
   const { open, isMobile, setOpenMobile } = useSidebar();
-  const { toast } = useToast();
-  const [isGeneratingShard, setIsGeneratingShard] = useState(false);
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
-
-  const handleGenerateShard = async () => {
-    setIsGeneratingShard(true);
-    try {
-      const snippet = await getLoreDataShard();
-      toast({
-        title: "Data Shard Interceptado!",
-        description: snippet,
-        duration: 8000,
-      });
-    } catch (error: any) {
-      console.error("Failed to generate lore shard:", error);
-      toast({
-        title: "Erro de Transmissão",
-        description: error.message || "Não foi possível obter o data shard. Tente novamente, choom.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsGeneratingShard(false);
-    }
-  };
 
   const toggleSection = (label: string) => {
     setExpandedSections(prev => ({ ...prev, [label]: !prev[label] }));
@@ -96,6 +71,7 @@ export function AppSidebar() {
       icon: Building,
       subItems: corporations.map(c => ({ label: c.name.split(":")[0], href: `#${generateAnchorId(c.name)}`}))
     },
+    { href: "/datashard", label: "Data Shard", icon: Database },
   ];
 
   const handleSubItemClick = () => {
@@ -104,11 +80,33 @@ export function AppSidebar() {
     }
   };
 
+  // Effect to load expanded sections from localStorage
+  useEffect(() => {
+    const storedExpandedSections = localStorage.getItem("expandedSidebarSections");
+    if (storedExpandedSections) {
+      setExpandedSections(JSON.parse(storedExpandedSections));
+    }
+  }, []);
+
+  // Effect to save expanded sections to localStorage
+  useEffect(() => {
+    localStorage.setItem("expandedSidebarSections", JSON.stringify(expandedSections));
+  }, [expandedSections]);
+
+
   return (
     <>
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-3">
-          <Bot size={32} className="text-primary" />
+          <svg width="32" height="32" viewBox="0 0 100 100" className="text-primary">
+            <defs>
+              <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style={{stopColor: 'hsl(var(--primary))', stopOpacity: 1}} />
+                <stop offset="100%" style={{stopColor: 'hsl(var(--accent))', stopOpacity: 1}} />
+              </linearGradient>
+            </defs>
+            <path fill="url(#iconGradient)" d="M50,5A45,45,0,0,0,5,50H15A35,35,0,0,1,50,15V5Z M5,50A45,45,0,0,0,50,95V85A35,35,0,0,1,15,50H5Z M50,95A45,45,0,0,0,95,50H85A35,35,0,0,1,50,85V95Z M95,50A45,45,0,0,0,50,5V15A35,35,0,0,1,85,50H95Z M50,25A25,25,0,1,0,75,50,25,25,0,0,0,50,25Z M50,30A20,20,0,1,1,30,50,20,20,0,0,1,50,30Z"/>
+          </svg>
           <div className="flex flex-col">
             <h2 className="text-lg font-semibold text-foreground">
               Night City Archives
@@ -131,7 +129,7 @@ export function AppSidebar() {
                         className: "bg-primary text-primary-foreground",
                       }}
                       className="w-full justify-start"
-                      onClick={item.subItems && isMobile ? () => toggleSection(item.label) : undefined}
+                      onClick={item.subItems && isMobile ? (e) => { e.preventDefault(); toggleSection(item.label); } : (isMobile ? () => setOpenMobile(false) : undefined) }
                     >
                       <item.icon className="mr-2 h-5 w-5" />
                       <span>{item.label}</span>
@@ -172,20 +170,6 @@ export function AppSidebar() {
               )}
             </React.Fragment>
           ))}
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              onClick={handleGenerateShard}
-              disabled={isGeneratingShard}
-              tooltip={{
-                children: "Gerar Data Shard de Lore",
-                className: "bg-primary text-primary-foreground",
-              }}
-              className="w-full justify-start"
-            >
-              {isGeneratingShard ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Database className="mr-2 h-5 w-5" />}
-              <span>Data Shard</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="p-4 mt-auto">
@@ -200,4 +184,3 @@ export function AppSidebar() {
   );
 }
 
-    
