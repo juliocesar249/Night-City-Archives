@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Map } from "lucide-react";
-import { districts, District } from "@/lib/content/districts";
+import { districts, type District } from "@/lib/content/districts";
 
 export default function DistritosPage() {
   const pageTitle = "Os Distritos de Night City";
@@ -64,5 +64,3 @@ export default function DistritosPage() {
     </div>
   );
 }
-
-    

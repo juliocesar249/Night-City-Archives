@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Users } from "lucide-react";
-import { gangs, Gang } from "@/lib/content/gangs";
+import { gangs, type Gang } from "@/lib/content/gangs";
 
 
 export default function GanguesPage() {
@@ -80,4 +80,3 @@ export default function GanguesPage() {
     </div>
   );
 }
-    
