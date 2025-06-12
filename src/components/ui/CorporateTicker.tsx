@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { corporations } from '@/lib/content/corporations'; // Assuming this exports all corps
+import { corporations } from '@/lib/content/corporations'; 
 import { cn } from '@/lib/utils';
 import { TrendingUp, TrendingDown, AlertTriangle, Zap, Megaphone } from 'lucide-react';
 
@@ -15,17 +15,17 @@ interface TickerMessage {
 }
 
 const predefinedMessagesTemplates = [
-  { messageTemplate: "{corpName} stock soaring! +{value}% today.", type: 'stock_up', icon: <TrendingUp className="h-4 w-4 text-green-400" /> },
-  { messageTemplate: "Heavy losses for {corpName}, stock plummets -{value}%.", type: 'stock_down', icon: <TrendingDown className="h-4 w-4 text-red-400" /> },
-  { messageTemplate: "SECURITY ALERT: Increased {gangName} activity near {corpName} assets in {districtName}.", type: 'security_alert', icon: <AlertTriangle className="h-4 w-4 text-yellow-400" /> },
-  { messageTemplate: "{corpName} unveils new '{productName}' cyberware line! Pre-orders open.", type: 'product_launch', icon: <Megaphone className="h-4 w-4 text-blue-400" /> },
-  { messageTemplate: "Whispers on the net: {corpName} secretly developing {projectAdjective} AI project?", type: 'rumor', icon: <Zap className="h-4 w-4 text-purple-400" /> }
+  { messageTemplate: "{corpName} ações disparando! +{value}% hoje.", type: 'stock_up', icon: <TrendingUp className="h-4 w-4 text-green-400" /> },
+  { messageTemplate: "Grandes perdas para {corpName}, ações despencam -{value}%.", type: 'stock_down', icon: <TrendingDown className="h-4 w-4 text-red-400" /> },
+  { messageTemplate: "ALERTA DE SEGURANÇA: Aumento da atividade da gangue {gangName} perto dos ativos da {corpName} em {districtName}.", type: 'security_alert', icon: <AlertTriangle className="h-4 w-4 text-yellow-400" /> },
+  { messageTemplate: "{corpName} revela nova linha de cyberware '{productName}'! Pré-vendas abertas.", type: 'product_launch', icon: <Megaphone className="h-4 w-4 text-blue-400" /> },
+  { messageTemplate: "Sussurros na rede: {corpName} secretamente desenvolvendo projeto de IA {projectAdjective}?", type: 'rumor', icon: <Zap className="h-4 w-4 text-purple-400" /> }
 ];
 
 const sampleGangs = ["Maelstrom", "Tyger Claws", "Valentinos", "6th Street", "Animals"];
 const sampleDistricts = ["Watson", "City Center", "Heywood", "Santo Domingo", "Pacifica"];
-const sampleProducts = ["OptiCore Augs", "Ronin Reflexes", "Kage Blades", "Titan Grip", "Nightwing OS"];
-const sampleAdjectives = ["controversial", "groundbreaking", "classified", "rogue", "sentient"];
+const sampleProducts = ["Implantes OptiCore", "Reflexos Ronin", "Lâminas Kage", "SO Nightwing", "Punho de Titã"];
+const sampleAdjectives = ["controverso", "inovador", "confidencial", "renegado", "senciente"];
 
 const getRandomElement = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
 
@@ -79,7 +79,7 @@ export function CorporateTicker() {
   }, [messages]);
 
   if (messages.length === 0) {
-    return <div className="text-sm text-muted-foreground p-2 text-center">Initializing corporate datastream...</div>;
+    return <div className="text-sm text-muted-foreground p-2 text-center">Iniciando fluxo de dados corporativos...</div>;
   }
 
   const currentMessage = messages[currentIndex];
@@ -119,3 +119,4 @@ export function CorporateTicker() {
     </div>
   );
 }
+
