@@ -135,9 +135,9 @@ export default function DistritosPage() {
     },
     {
       name: "As Terras Baldias (Badlands): O Deserto Sem Lei",
-      gradient: "linear-gradient(to right, #000000, #000000)",
-      titleColorClass: "text-primary",
-      borderColor: "#000000",
+      gradient: "linear-gradient(to right, #8B4513, #DAA520)",
+      titleColorClass: "text-white",
+      borderColor: "#8B4513",
       paragraphs: [
         "As Terras Baldias (Badlands) não são um distrito urbano, mas uma vasta e desolada região que cerca Night City, seu subúrbio mais selvagem. São o domínio das Famílias Nômades, grupos itinerantes que vivem fora do sistema corporativo.",
         "Originalmente desertos e terras agrícolas, a expansão urbana, poluição e desastres ambientais transformaram a área em um deserto árido e tóxico. Após o colapso econômico, muitos abandonaram as cidades e formaram as primeiras Famílias Nômades, buscando liberdade e autossuficiência.",
@@ -161,7 +161,7 @@ export default function DistritosPage() {
       <main className="flex flex-1 flex-col items-center p-4 sm:p-8 bg-background">
         <ScrollArea className="w-full h-[calc(100vh-100px)]">
           <div className="w-full max-w-4xl mx-auto space-y-8">
-            <Card className="shadow-xl border-white rounded-lg overflow-hidden">
+            <Card className="shadow-xl border-2 border-white rounded-lg overflow-hidden">
               <CardHeader className="bg-card-foreground p-6">
                 <CardTitle className="font-headline text-3xl sm:text-4xl text-center text-primary">Explorando os Territórios de Night City</CardTitle>
               </CardHeader>
