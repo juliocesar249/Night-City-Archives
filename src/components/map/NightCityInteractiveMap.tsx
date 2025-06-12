@@ -30,101 +30,120 @@ export function NightCityInteractiveMap({
   onDistrictHover,
 }: NightCityInteractiveMapProps) {
   
-  // Placeholder: Replace with actual SVG viewBox from your map
-  const viewBox = "0 0 800 1000"; 
-
-  // Placeholder coordinates for text - these would be path 'd' attributes in a real SVG
-  const placeholderCoords: { [key: string]: { x: number; y: number } } = {
-    "watson-o-berco-e-o-abandono": { x: 150, y: 150 },
-    "westbrook-o-luxo-deteriorado-e-a-ordem-dos-tyger-claws": { x: 350, y: 200 },
-    "city-center-o-coracao-de-neon-do-poder-corporativo": { x: 300, y: 400 },
-    "heywood-a-alma-multifacetada-de-night-city": { x: 250, y: 600 },
-    "santo-domingo-o-motor-industrial-e-o-caldeirao-de-classes": { x: 500, y: 700 },
-    "pacifica-o-paraiso-esquecido-vazio-e-perigoso": { x: 100, y: 800 },
-    "dogtown-o-feudo-anarquico-do-coronel-hansen": { x: 250, y: 900 },
-    "as-terras-baldias-badlands-o-deserto-sem-lei": { x: 600, y: 100 },
-  };
+  // IMPORTANT: Replace this viewBox with the viewBox from YOUR SVG file (e.g., "0 0 1200 900")
+  // You can find this by opening src/img/night-city-complete.svg in a text editor.
+  const viewBox = "0 0 800 700"; // <<<< ----- UPDATE THIS VALUE from your SVG file
 
   return (
-    <div className="w-full max-w-2xl mx-auto my-4 p-2 border rounded-lg shadow-lg bg-card" aria-label="Mapa Interativo de Night City">
+    <div className="w-full max-w-3xl mx-auto my-6 p-2 border border-border rounded-lg shadow-lg bg-card overflow-hidden" aria-label="Mapa Interativo de Night City">
       <svg
-        viewBox={viewBox}
+        viewBox={viewBox} // Ensure this matches your SVG's viewBox for correct scaling
         className="w-full h-auto"
         preserveAspectRatio="xMidYMid meet"
+        aria-labelledby="mapTitle"
+        role="graphics-document"
       >
-        <title>Mapa de Night City</title>
+        <title id="mapTitle">Mapa de Night City</title>
+        <desc>Mapa interativo dos distritos de Night City. Clique ou passe o mouse sobre um distrito para destacá-lo e ver detalhes.</desc>
+        
         {/* 
-          INTEGRATION POINT FOR YOUR SVG:
-          Replace the <g> group below with your actual SVG <path> or <g> elements for each district.
-          Ensure each district path/group has an `id` attribute matching the output of 
-          `generateAnchorId(district.name)`.
-          For example: <path id="watson-o-berco-e-o-abandono" d="..." />
+          SVG INTEGRATION INSTRUCTIONS:
+          You need to replace the content within this loop with the <path> elements from your SVG file (src/img/night-city-complete.svg).
+          
+          For EACH district in the `districts` array:
+          1. Identify the <path> element in your SVG that visually represents that district.
+          2. Copy its 'd' attribute (e.g., d="M10,10 L20,10 L15,20 Z").
+          3. Also copy any 'transform' attribute if your path uses it (e.g., transform="translate(10, 20) scale(2)").
+          4. Place this <path> element inside the loop below, making sure it corresponds to the correct `district` object.
+          5. To make it interactive, you MUST apply the following attributes to YOUR <path> element:
+             - key={districtId}
+             - id={districtId}  // CRITICAL for linking
+             - d="YOUR_COPIED_D_ATTRIBUTE_HERE"
+             - transform="YOUR_COPIED_TRANSFORM_ATTRIBUTE_HERE" // (if applicable)
+             - fill={fill}
+             - stroke={stroke}
+             - strokeWidth={strokeWidth}
+             - opacity={opacity}
+             - onClick={() => onDistrictSelect(districtId)}
+             - onMouseEnter={() => onDistrictHover(districtId)}
+             - onMouseLeave={() => onDistrictHover(null)}
+             - className={cn("cursor-pointer transition-all duration-150 ease-in-out")}
+             - style={{ zIndex }} // Helps with hover overlaps
+             - aria-label={district.name}
+          
+          I've included an EXAMPLE conditional rendering for 'watson'. You'll need to adapt this
+          for all your districts, or find a way to map your SVG paths to the district data.
         */}
-        <g>
-          {districts.map((district, index) => {
+
+        <g> {/* Optional: A group for all district paths */}
+          {districts.map((district) => {
             const districtId = generateAnchorId(district.name);
             const isActive = activeDistrictId === districtId;
             const isHovered = hoveredDistrictId === districtId;
             
-            let fill = 'hsl(var(--muted))'; // Default fill
-            let stroke = district.borderColor || 'hsl(var(--border))';
-            let strokeWidth = 1;
-            let opacity = 0.7;
+            // Dynamic styles for the path
+            let fill = isActive 
+              ? (district.borderColor ? `${district.borderColor}E6` : 'hsl(var(--primary) / 0.9)') // 90% opacity active
+              : isHovered 
+                ? (district.borderColor ? `${district.borderColor}B3` : 'hsl(var(--primary) / 0.7)') // 70% opacity hover
+                : 'hsl(var(--muted) / 0.5)'; // Default: 50% opacity muted
+            
+            let stroke = isActive || isHovered 
+              ? 'hsl(var(--foreground))' 
+              : (district.borderColor || 'hsl(var(--border) / 0.7)');
 
-            if (isActive) {
-              fill = district.borderColor || 'hsl(var(--primary))';
-              stroke = 'hsl(var(--foreground))';
-              strokeWidth = 2;
-              opacity = 1;
-            } else if (isHovered) {
-              fill = district.borderColor || 'hsl(var(--primary))';
-              opacity = 0.9;
-              strokeWidth = 1.5;
-            }
+            let strokeWidth = isActive ? 2.5 : isHovered ? 2 : 1;
+            let opacity = 1; // Opacity is now mainly handled by the fill color's alpha
+            let zIndex = isActive ? 10 : isHovered ? 5 : 1;
 
-            // Using text as placeholders. Replace with your <path> elements.
-            const coords = placeholderCoords[districtId] || { x: 50 + (index * 100) % 700, y: 50 + Math.floor(index / 7) * 100 };
-
-            return (
-              <g 
-                key={districtId} 
-                id={`map-${districtId}`} // Ensure IDs on SVG elements are unique if map elements are directly used
-                onClick={() => onDistrictSelect(districtId)}
-                onMouseEnter={() => onDistrictHover(districtId)}
-                onMouseLeave={() => onDistrictHover(null)}
-                className="cursor-pointer transition-all duration-200"
-                aria-label={district.name}
-              >
-                {/* Placeholder Rectangle: Replace with your actual <path> element */}
-                <rect 
-                  x={coords.x - 40} 
-                  y={coords.y - 20} 
-                  width="80" 
-                  height="30" 
-                  fill={fill} 
-                  stroke={stroke} 
+            // --- Your integration point for EACH district's path ---
+            // Replace this illustrative 'if' block with the actual paths from your SVG.
+            // You need one <path> here for each district, with the correct 'd' attribute.
+            if (districtId === "watson-o-berco-e-o-abandono") { 
+               return (
+                <path
+                  key={districtId}
+                  id={districtId} 
+                  // IMPORTANT: Replace this 'd' attribute with Watson's path data from your SVG file
+                  d="M50,50 h100 v50 h-100 z" // EXAMPLE PATH - REPLACE THIS
+                  fill={fill}
+                  stroke={stroke}
                   strokeWidth={strokeWidth}
                   opacity={opacity}
-                  rx="5"
+                  onClick={() => onDistrictSelect(districtId)}
+                  onMouseEnter={() => onDistrictHover(districtId)}
+                  onMouseLeave={() => onDistrictHover(null)}
+                  className={cn("cursor-pointer transition-all duration-150 ease-in-out")}
+                  style={{ zIndex }}
+                  aria-label={district.name}
                 />
-                <text 
-                  x={coords.x} 
-                  y={coords.y} 
-                  textAnchor="middle" 
-                  fontSize="10" 
-                  fill={isActive || isHovered ? 'hsl(var(--background))' : 'hsl(var(--foreground))'}
-                  className="pointer-events-none select-none"
-                >
-                  {district.name.split(':')[0]}
-                </text>
-                 {/* Add a comment for where the actual path would go */}
-                {/* <path id={districtId} d="YOUR_DISTRICT_PATH_HERE" fill={fill} stroke={stroke} strokeWidth={strokeWidth} opacity={opacity} /> */}
-              </g>
-            );
+              );
+            }
+            // Add similar <path> elements for other districts, mapping them to their districtId
+            // For example:
+            // if (districtId === "city-center-o-coracao-de-neon-do-poder-corporativo") {
+            //   return <path key={districtId} id={districtId} d="YOUR_CITY_CENTER_PATH_DATA" ... (apply all props as above) />;
+            // }
+            
+            // If you don't have a path for a district yet, you can return null or a placeholder
+            return null; 
           })}
         </g>
-        <desc>Mapa interativo dos distritos de Night City. Clique ou passe o mouse sobre um distrito para destacá-lo.</desc>
+        
+        {/* Fallback text if no paths are specifically mapped above, or as an initial guide */}
+        {/* This checks if at least one path (e.g. Watson) has been manually added. 
+            You might want to remove this text once you've integrated all your paths. */}
+        {!districts.find(d => generateAnchorId(d.name) === "watson-o-berco-e-o-abandono" && activeDistrictId) && 
+         !districts.find(d => generateAnchorId(d.name) === "watson-o-berco-e-o-abandono" && hoveredDistrictId) && 
+         (
+            <text x="50%" y="50%" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="14" className="pointer-events-none">
+                Interactive Map Area. Please integrate SVG paths from 
+                <tspan x="50%" dy="1.2em">src/img/night-city-complete.svg into NightCityInteractiveMap.tsx</tspan>
+                <tspan x="50%" dy="1.2em">(See comments in the component for instructions)</tspan>
+            </text>
+        )}
       </svg>
     </div>
   );
 }
+ 
