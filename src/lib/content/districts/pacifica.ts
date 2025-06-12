@@ -15,5 +15,7 @@ export const pacifica: District = {
     "Subdistritos e locais conhecidos: Coastview (com esqueletos de resorts e o Grand Imperial Mall, um shopping inacabado que virou uma \"cidade dentro da cidade\"), Capitão Caliente (moradias improvisadas e mercados), West Wind Estate (labirinto de prédios abandonados).",
     "Pacifica é de uma beleza distópica: palmeiras e praia poluída contrastam com prédios abandonados. Em meio à decadência, os habitantes criaram uma cultura de resistência.",
     "Em 2077, Pacifica é zona de perigo e liberdade, onde a tecnologia dos Voodoo Boys choca com a pobreza. A vida é barata, a esperança é luxo, mas a capacidade de sobreviver é inabalável."
-  ]
+  ],
+  dominantGangs: ["Voodoo Boys", "Animals"],
+  majorCorporations: []
 };

@@ -16,5 +16,7 @@ export const watson: District = {
     "Apesar de ser um distrito menos valorizado pelas grandes megacorporações, Watson ainda sente a influência delas, embora de forma mais indireta. Empresas de tecnologia menores e startups tentam se estabelecer na região, buscando inovar em um ambiente mais \"livre\". O governo de Night City, através de vereadores locais e figuras políticas menos expressivas, tenta manter uma fachada de controle, mas a realidade é que o poder de fato está nas mãos dos Tyger Claws e de quem mais tiver mais edinhos (dinheiro) para bancar a influência.",
     "Locais conhecidos em Watson, além de Little China e Kabuki, incluem o Arasaka Waterfront, que, apesar do nome, não é mais um ponto forte da Arasaka, mas um lembrete da antiga glória corporativa, e vários mercados de rua onde você pode encontrar de tudo, desde comida de rua deliciosa até tecnologia duvidosa e armas.",
     "Em 2077, Watson é um distrito de contrastes gritantes: a efervescência cultural de Little China e Kabuki convive com a decadência do NID e a constante ameaça da violência das gangues. É o lugar onde a maioria dos recém-chegados em Night City começa sua jornada, um campo de testes brutal para quem quer sobreviver na cidade dos sonhos e pesadelos."
-  ]
+  ],
+  dominantGangs: ["Tyger Claws", "Maelstrom (NID)"],
+  majorCorporations: ["Arasaka (Waterfront - remnants)"]
 };

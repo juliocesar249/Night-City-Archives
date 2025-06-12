@@ -16,5 +16,7 @@ export const dogtown: District = {
     "Dogtown é lugar de conflitos internos entre facções dos Barghest, rivalidades com gangues menores e confrontos com quem tenta invadir ou fugir. A localização adjacente a Pacifica gera tensões com os Voodoo Boys.",
     "Locais conhecidos: Stadium (centro de operações Barghest e mercado negro), Black Sapphire (cassino e fortaleza de Hansen), Longshore Stacks (depósitos para contrabando).",
     "Em 2077, Dogtown é um testamento da capacidade humana de sobreviver. É uma zona de guerra constante onde a liberdade é anarquia e a lei é ditada pela arma. É o sonho de Richard Night, pervertido e distorcido."
-  ]
+  ],
+  dominantGangs: ["Barghest (Kurt Hansen)"],
+  majorCorporations: ["Militech (clandestine)", "Arasaka (clandestine)"]
 };

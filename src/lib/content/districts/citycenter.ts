@@ -19,5 +19,7 @@ export const cityCenter: District = {
     "Diferente de outros distritos, o City Center não tem gangues territoriais dominantes. A presença de gangues aqui é sutil, ligada a roubos de alto valor ou sabotagens corporativas. Confrontos abertos são raros.",
     "Além da Arasaka Tower, outros marcos incluem o Night City Financial Center e o Corpo Plaza. Há também megabuildings com apartamentos caríssimos e galerias de arte de ponta.",
     "Em 2077, o City Center é o ápice da distopia cyberpunk: um lugar de riqueza inigualável e avanço tecnológico estonteante, construído sobre as ruínas de guerras passadas e mantido pelo controle implacável das megacorporações."
-  ]
+  ],
+  dominantGangs: [],
+  majorCorporations: ["Arasaka", "Militech", "Kang Tao", "Zetatech", "Biotechnica", "Trauma Team International", "Night Corp"]
 };

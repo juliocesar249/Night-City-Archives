@@ -16,5 +16,7 @@ export const santoDomingo: District = {
     "Subdistritos detalhados: Rancho Coronado (principal área industrial e residencial, reduto dos 6th Street), Arroyo (mais industrial e desolado, intensa atividade de gangues).",
     "Santo Domingo é palco constante de brigas. Os 6th Street enfrentam os Maelstrom e outras gangues. A vida é uma luta pela sobrevivência em ambiente hostil.",
     "Em 2077, Santo Domingo é o retrato da resiliência e exploração. Mantém as engrenagens da metrópole girando à custa da saúde e segurança de seus habitantes. A comunidade é forte, mas a batalha contra corporações e violência é diária."
-  ]
+  ],
+  dominantGangs: ["6th Street", "Maelstrom", "Animals"],
+  majorCorporations: ["Petrochem", "Militech"]
 };

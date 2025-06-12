@@ -15,5 +15,7 @@ export const badlands: District = {
     "As Badlands são palco constante de conflitos entre Famílias Nômades por territórios e recursos. Os Wraiths são grandes inimigos. Scavengers também espreitam. A NCPD tem jurisdição quase zero.",
     "Locais conhecidos: Solar Array (complexo de painéis solares), Wind Farms (turbinas eólicas), Scrapyards (ferro-velhos), Nomad Camps (acampamentos temporários ou semi-permanentes), Aldecaldos Camp (principal acampamento Aldecaldo).",
     "Em 2077, as Terras Baldias são um lembrete de que a vida fora das megacidades é brutal, mas oferece liberdade. Para os Nômades, são o lar, símbolo de resistência e autonomia."
-  ]
+  ],
+  dominantGangs: ["Aldecaldos", "Wraiths", "Forge"],
+  majorCorporations: ["Petrochem", "Militech", "Zetatech (minor)"]
 };

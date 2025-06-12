@@ -40,7 +40,7 @@ export default function Home() {
         <h1 className="text-xl font-semibold text-primary">Introdução</h1>
       </header>
       <main className="flex flex-1 flex-col items-center p-4 sm:p-8 bg-background">
-        <Card className="w-full max-w-3xl shadow-xl border-accent rounded-lg overflow-hidden mb-8">
+        <Card className="w-full max-w-3xl shadow-xl border-accent rounded-lg overflow-hidden mb-8 transition-all duration-300 ease-in-out hover:scale-102">
           <CardHeader className="bg-card-foreground p-6">
             <CardTitle className="font-headline text-3xl sm:text-4xl text-center text-primary">Bem-vindo(a) a Night City</CardTitle>
             <CardDescription className="text-center text-muted-foreground pt-2 text-md sm:text-lg">
@@ -64,7 +64,10 @@ export default function Home() {
 
         <div className="w-full max-w-3xl space-y-8">
           {sections.map((section) => (
-            <Card key={section.title} className="shadow-lg border-secondary rounded-lg overflow-hidden">
+            <Card 
+              key={section.title} 
+              className="shadow-lg border-secondary rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-xl"
+            >
               <CardHeader className="p-6">
                 <div className="flex items-center justify-center mb-2">
                   {section.icon}

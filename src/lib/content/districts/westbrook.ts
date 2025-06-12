@@ -19,5 +19,7 @@ export const westbrook: District = {
     "Os conflitos em Westbrook são menos sobre guerra de gangues territorial em grande escala e mais sobre disputas de poder e controle sobre mercados lucrativos. Facções menores tentam roubar clientes dos Tyger Claws ou sabotar seus negócios, resultando em assassinatos discretos e confrontos localizados.",
     "Apesar do glamour e da riqueza, Westbrook, assim como outras partes de Night City, não é imune à decadência. Há bolsões de pobreza e áreas menos cuidadas. A dependência de tecnologia e a busca incessante por aprimoramentos cibernéticos levam muitos a vícios e problemas de saúde mental, mesmo entre os mais ricos.",
     "Em 2077, Westbrook é um contraste chocante: o auge do luxo e da tecnologia convivendo com uma violência organizada e uma vigilância constante. É um lugar onde a superficialidade e a ostentação escondem a brutalidade de uma cidade onde o poder e o dinheiro ditam todas as regras."
-  ]
+  ],
+  dominantGangs: ["Tyger Claws"],
+  majorCorporations: ["Arasaka", "Diversas de entretenimento e luxo"]
 };

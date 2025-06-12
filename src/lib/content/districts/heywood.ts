@@ -16,5 +16,7 @@ export const heywood: District = {
     "Subdistritos de Heywood: Wellsprings (coração dos Valentinos), The Glen (mais afluente, fronteira com City Center), Vista del Rey (mais pobre e industrial).",
     "Heywood é um palco constante de pequenos conflitos: disputas territoriais, brigas com outras gangues e confrontos com a NCPD. A vida é uma luta diária contra pobreza e violência.",
     "Em 2077, Heywood é o microcosmo de Night City: riqueza e pobreza extremas, onde fé e família se misturam com a brutalidade das ruas. A comunidade é forte, mas a opressão é constante."
-  ]
+  ],
+  dominantGangs: ["Valentinos", "6th Street (borders)"],
+  majorCorporations: ["Biotechnica (clinics)", "Variadas (fachadas)"]
 };

@@ -5,4 +5,6 @@ export interface District {
   titleColorClass: string;
   borderColor: string;
   paragraphs: string[];
+  dominantGangs?: string[];
+  majorCorporations?: string[];
 }

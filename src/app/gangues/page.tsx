@@ -26,7 +26,7 @@ export default function GanguesPage() {
       <main className="flex flex-1 flex-col items-center p-4 sm:p-8 bg-background">
         <ScrollArea className="w-full h-[calc(100vh-100px)]">
           <div className="w-full max-w-4xl mx-auto space-y-8">
-            <Card className="shadow-xl border-2 border-foreground rounded-lg overflow-hidden">
+            <Card className="shadow-xl border-foreground rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:scale-102">
               <CardHeader className="bg-card-foreground p-6">
                 <CardTitle className="font-headline text-3xl sm:text-4xl text-center text-primary">O Submundo em Ação</CardTitle>
               </CardHeader>
@@ -40,7 +40,7 @@ export default function GanguesPage() {
             {gangs.map((gang: Gang, index: number) => (
               <Card 
                 key={index} 
-                className="shadow-lg rounded-lg overflow-hidden border-2"
+                className="shadow-lg rounded-lg overflow-hidden border-2 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-xl"
                 style={{
                   borderColor: gang.borderColor || defaultBorderColor,
                   boxShadow: gang.glowColor ? `0 0 10px 2px ${gang.glowColor}` : `0 0 8px 1px ${defaultGlowColor}`,
