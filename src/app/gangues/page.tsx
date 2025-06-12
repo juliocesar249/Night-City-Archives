@@ -11,6 +11,8 @@ export default function GanguesPage() {
   const gangs = [
     {
       name: "Maelstrom: A Sinapse da Loucura Cibernética",
+      borderColor: "#c90000",
+      glowColor: "#c90000",
       introduction: "Os Maelstrom são, sem sombra de dúvida, uma das gangues mais perturbadoras e temidas de Night City. Eles não são apenas criminosos; são uma encarnação do perigo da obsessão cibernética e da linha tênue entre aprimoramento e psicose. Seus membros são facilmente reconhecíveis por suas modificações corporais extremas, muitas vezes envolvendo grandes quantidades de cromo e implantes que distorcem a forma humana, e seus olhos que brilham com luzes vermelhas intensas, um símbolo de sua insanidade e dependência.",
       sections: [
         {
@@ -539,6 +541,9 @@ export default function GanguesPage() {
     },
   ];
 
+  const defaultBorderColor = 'hsl(var(--secondary))';
+  const defaultGlowColor = 'hsl(var(--accent))'; // Or choose another default glow
+
   return (
     <div className="flex flex-col min-h-screen">
       <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
@@ -563,7 +568,11 @@ export default function GanguesPage() {
             {gangs.map((gang, index) => (
               <Card 
                 key={index} 
-                className="shadow-lg rounded-lg overflow-hidden border-2 border-secondary"
+                className="shadow-lg rounded-lg overflow-hidden border-2"
+                style={{
+                  borderColor: gang.borderColor || defaultBorderColor,
+                  boxShadow: gang.glowColor ? `0 0 10px 2px ${gang.glowColor}` : `0 0 8px 1px ${defaultGlowColor}`,
+                }}
               >
                 <CardHeader 
                   className="p-6 bg-card-foreground/50"

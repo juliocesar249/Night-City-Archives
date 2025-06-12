@@ -161,7 +161,10 @@ export default function DistritosPage() {
       <main className="flex flex-1 flex-col items-center p-4 sm:p-8 bg-background">
         <ScrollArea className="w-full h-[calc(100vh-100px)]">
           <div className="w-full max-w-4xl mx-auto space-y-8">
-            <Card className="shadow-xl border-2 border-white rounded-lg overflow-hidden">
+            <Card 
+              className="shadow-xl border-2 rounded-lg overflow-hidden"
+              style={{ borderColor: 'hsl(var(--primary-foreground))' }}
+            >
               <CardHeader className="bg-card-foreground p-6">
                 <CardTitle className="font-headline text-3xl sm:text-4xl text-center text-primary">Explorando os Territórios de Night City</CardTitle>
               </CardHeader>
@@ -175,8 +178,11 @@ export default function DistritosPage() {
             {districts.map((district, index) => (
               <Card 
                 key={index} 
-                className={`shadow-lg rounded-lg overflow-hidden border-2`}
-                style={{ borderColor: district.borderColor }}
+                className="shadow-lg rounded-lg overflow-hidden border-2"
+                style={{ 
+                  borderColor: district.borderColor,
+                  boxShadow: `0 0 10px 2px ${district.borderColor}`
+                }}
               >
                 <CardHeader 
                   className="p-6"
