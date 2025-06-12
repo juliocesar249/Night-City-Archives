@@ -1,18 +1,35 @@
 
 "use client";
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Loader2, Database, AlertTriangle, RefreshCw, Newspaper, ListChecks, Brain } from "lucide-react";
+import { Loader2, Database, AlertTriangle, RefreshCw, Newspaper, ListChecks, Brain, Check, X } from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { getLoreDataShard, getNightCityQuiz, getNightCityNews } from "@/app/actions/loreActions";
-import type { QuizOutput, QuizItem } from '@/ai/flows/quiz-flow';
+import type { QuizOutput, QuizItem as RawQuizItem } from '@/ai/flows/quiz-flow';
 import type { NewsOutput } from '@/ai/flows/news-flow';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
 
 type ActiveTab = "snippet" | "quiz" | "news";
+
+interface QuizItem extends RawQuizItem {
+  shuffledOptions: string[];
+}
+
+// Helper function to shuffle an array
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
 
 export default function DataShardPage() {
   const [activeTab, setActiveTab] = useState<ActiveTab>("snippet");
@@ -23,6 +40,9 @@ export default function DataShardPage() {
   const [initialLoreLoadDone, setInitialLoreLoadDone] = useState(false);
 
   const [quizData, setQuizData] = useState<QuizOutput | null>(null);
+  const [shuffledQuizItems, setShuffledQuizItems] = useState<QuizItem[]>([]);
+  const [selectedAnswers, setSelectedAnswers] = useState<Record<number, string | null>>({});
+  const [revealedAnswers, setRevealedAnswers] = useState<Record<number, boolean>>({});
   const [isQuizLoading, setIsQuizLoading] = useState(false);
   const [quizError, setQuizError] = useState<string | null>(null);
 
@@ -51,9 +71,19 @@ export default function DataShardPage() {
     setIsQuizLoading(true);
     setQuizError(null);
     setQuizData(null);
+    setShuffledQuizItems([]);
+    setSelectedAnswers({});
+    setRevealedAnswers({});
     try {
       const newQuiz = await getNightCityQuiz();
       setQuizData(newQuiz);
+      if (newQuiz && newQuiz.questions) {
+        const processedItems = newQuiz.questions.map(q => ({
+          ...q,
+          shuffledOptions: shuffleArray([q.correctAnswer, ...q.alternatives]),
+        }));
+        setShuffledQuizItems(processedItems);
+      }
     } catch (err: any) {
       setQuizError(err.message || "Falha ao gerar o Quiz. Parece que os netrunners da NetWatch estão bloqueando a transmissão.");
       setQuizData(null);
@@ -81,8 +111,13 @@ export default function DataShardPage() {
     if (activeTab === "snippet" && !initialLoreLoadDone) {
       fetchLoreSnippet();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTab, initialLoreLoadDone]); // fetchLoreSnippet removed to avoid re-triggering on its own change
+  }, [activeTab, initialLoreLoadDone, fetchLoreSnippet]);
+
+  const handleAnswerSelection = (questionIndex: number, selectedOption: string) => {
+    if (revealedAnswers[questionIndex]) return; // Don't change answer after reveal
+    setSelectedAnswers(prev => ({ ...prev, [questionIndex]: selectedOption }));
+    setRevealedAnswers(prev => ({ ...prev, [questionIndex]: true }));
+  };
 
   const isLoading = isLoreLoading || isQuizLoading || isNewsLoading;
 
@@ -135,16 +170,56 @@ export default function DataShardPage() {
             </div>
           );
         }
-        if (quizData) {
+        if (quizData && shuffledQuizItems.length > 0) {
           return (
-            <ScrollArea className="h-auto max-h-[400px] w-full p-1">
+            <ScrollArea className="h-auto max-h-[550px] w-full p-1">
               <div className="space-y-6">
                 <h3 className="text-2xl font-headline text-accent text-center mb-4">{quizData.quizTitle}</h3>
-                {quizData.questions.map((item: QuizItem, index: number) => (
+                {shuffledQuizItems.map((item, index) => (
                   <div key={index} className="p-4 border border-border rounded-lg bg-card/80 shadow-md">
-                    <p className="font-semibold text-primary mb-1">Questão {index + 1}:</p>
-                    <p className="text-foreground mb-2">{item.question}</p>
-                    <p className="text-sm text-accent-foreground/80 bg-accent/70 p-2 rounded-md">Resposta: <span className="font-medium">{item.answer}</span></p>
+                    <p className="font-semibold text-primary mb-2">Questão {index + 1}: <span className="text-foreground font-normal">{item.question}</span></p>
+                    <RadioGroup
+                      onValueChange={(value) => handleAnswerSelection(index, value)}
+                      value={selectedAnswers[index] || ""}
+                      disabled={revealedAnswers[index]}
+                      className="space-y-2"
+                    >
+                      {item.shuffledOptions.map((option, optionIndex) => {
+                        const isSelected = selectedAnswers[index] === option;
+                        const isCorrect = option === item.correctAnswer;
+                        const isRevealed = revealedAnswers[index];
+                        
+                        return (
+                          <div key={optionIndex} className={cn(
+                            "flex items-center space-x-3 p-3 rounded-md border transition-all",
+                            isRevealed && isCorrect ? "border-green-500 bg-green-500/10" : "border-border",
+                            isRevealed && isSelected && !isCorrect ? "border-red-500 bg-red-500/10" : ""
+                          )}>
+                            <RadioGroupItem
+                              value={option}
+                              id={`q${index}-opt${optionIndex}`}
+                              disabled={isRevealed}
+                              className={cn(
+                                isRevealed && isCorrect && isSelected ? "ring-2 ring-green-500 border-green-600" : "",
+                                isRevealed && !isCorrect && isSelected ? "ring-2 ring-red-500 border-red-600" : ""
+                              )}
+                            />
+                            <Label
+                              htmlFor={`q${index}-opt${optionIndex}`}
+                              className={cn(
+                                "flex-1 cursor-pointer",
+                                isRevealed && isCorrect && "text-green-400 font-semibold",
+                                isRevealed && isSelected && !isCorrect && "text-red-400 line-through"
+                              )}
+                            >
+                              {option}
+                            </Label>
+                            {isRevealed && isCorrect && <Check className="h-5 w-5 text-green-500" />}
+                            {isRevealed && isSelected && !isCorrect && <X className="h-5 w-5 text-red-500" />}
+                          </div>
+                        );
+                      })}
+                    </RadioGroup>
                   </div>
                 ))}
               </div>
@@ -195,8 +270,8 @@ export default function DataShardPage() {
 
   const getButtonText = () => {
     if (activeTab === 'snippet') return "Nova Varredura de Shard";
-    if (activeTab === 'quiz') return "Gerar Quiz";
-    if (activeTab === 'news') return "Gerar Notícias da N54";
+    if (activeTab === 'quiz') return "Gerar Novo Quiz";
+    if (activeTab === 'news') return "Gerar Novas Notícias";
     return "Gerar";
   };
 
@@ -240,7 +315,7 @@ export default function DataShardPage() {
               </TabsTrigger>
             </TabsList>
 
-            <CardContent className="p-4 min-h-[320px] flex flex-col items-center justify-center bg-black/20 rounded-md border border-border shadow-inner">
+            <CardContent className="p-4 min-h-[320px] flex flex-col items-center justify-start bg-black/20 rounded-md border border-border shadow-inner">
               <TabsContent value="snippet" className="w-full mt-0">{renderContent()}</TabsContent>
               <TabsContent value="quiz" className="w-full mt-0">{renderContent()}</TabsContent>
               <TabsContent value="news" className="w-full mt-0">{renderContent()}</TabsContent>
@@ -273,3 +348,4 @@ export default function DataShardPage() {
     </div>
   );
 }
+
