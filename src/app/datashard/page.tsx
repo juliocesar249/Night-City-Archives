@@ -47,7 +47,7 @@ export default function DataShardPage() {
   const [isNewsLoading, setIsNewsLoading] = useState(false);
   const [newsError, setNewsError] = useState<string | null>(null);
   
-  const clearPreviousContent = (newActiveContent: ActiveContentType) => {
+  const clearPreviousContentAndSetLoading = (newActiveContent: ActiveContentType) => {
     setActiveContent(newActiveContent);
     setLoreSnippet(null);
     setLoreError(null);
@@ -58,11 +58,14 @@ export default function DataShardPage() {
     setQuizError(null);
     setNewsData(null);
     setNewsError(null);
+
+    if (newActiveContent === "shard") setIsLoreLoading(true);
+    if (newActiveContent === "quiz") setIsQuizLoading(true);
+    if (newActiveContent === "news") setIsNewsLoading(true);
   };
 
   const fetchLoreSnippet = useCallback(async () => {
-    clearPreviousContent("shard");
-    setIsLoreLoading(true);
+    clearPreviousContentAndSetLoading("shard");
     try {
       const newShard = await getLoreDataShard();
       setLoreSnippet(newShard);
@@ -75,8 +78,7 @@ export default function DataShardPage() {
   }, []);
 
   const fetchQuiz = async () => {
-    clearPreviousContent("quiz");
-    setIsQuizLoading(true);
+    clearPreviousContentAndSetLoading("quiz");
     try {
       const newQuiz = await getNightCityQuiz();
       setQuizData(newQuiz);
@@ -96,8 +98,7 @@ export default function DataShardPage() {
   };
 
   const fetchNews = async () => {
-    clearPreviousContent("news");
-    setIsNewsLoading(true);
+    clearPreviousContentAndSetLoading("news");
     try {
       const newNews = await getNightCityNews();
       setNewsData(newNews);
@@ -174,7 +175,7 @@ export default function DataShardPage() {
                     <CardTitle className="text-primary text-3xl font-headline text-center">{quizData.quizTitle}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-6">
-                    <ScrollArea className="w-full h-auto max-h-[65vh] p-1">
+                    <ScrollArea className="w-full h-[600px] p-1"> {/* Explicit height */}
                       <div className="space-y-6">
                         {shuffledQuizItems.map((item, index) => (
                           <div key={index} className="p-4 border border-border rounded-lg bg-card/80 shadow-md">
@@ -293,7 +294,7 @@ export default function DataShardPage() {
               size="lg"
               className="border-accent hover:bg-accent hover:text-accent-foreground transition-colors duration-300 group w-full sm:w-auto text-base py-3 px-6"
             >
-              {isLoreLoading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <RefreshCw className="mr-2 h-5 w-5 group-hover:animate-spin" />}
+              {isLoreLoading && activeContent === 'shard' ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <RefreshCw className="mr-2 h-5 w-5 group-hover:animate-spin" />}
               Gerar Data Shard
             </Button>
             <Button
@@ -303,7 +304,7 @@ export default function DataShardPage() {
               size="lg"
               className="border-primary hover:bg-primary hover:text-primary-foreground transition-colors duration-300 group w-full sm:w-auto text-base py-3 px-6"
             >
-              {isQuizLoading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Brain className="mr-2 h-5 w-5" />}
+              {isQuizLoading && activeContent === 'quiz' ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Brain className="mr-2 h-5 w-5" />}
               Gerar Quiz da Lore
             </Button>
             <Button
@@ -313,12 +314,12 @@ export default function DataShardPage() {
               size="lg"
               className="border-secondary hover:bg-secondary hover:text-secondary-foreground transition-colors duration-300 group w-full sm:w-auto text-base py-3 px-6"
             >
-              {isNewsLoading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Newspaper className="mr-2 h-5 w-5" />}
+              {isNewsLoading && activeContent === 'news' ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Newspaper className="mr-2 h-5 w-5" />}
               Gerar Notícias N54
             </Button>
         </div>
 
-        <div className="w-full flex-1"> {/* This container will hold the dynamic content */}
+        <div className="w-full flex-1">
             {renderDynamicContent()}
         </div>
       </main>
@@ -326,5 +327,6 @@ export default function DataShardPage() {
   );
 }
 
+    
 
     
