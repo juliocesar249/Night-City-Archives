@@ -6,6 +6,16 @@ import { Map, Users, Building as BuildingIcon } from "lucide-react"; // Renamed 
 import { districts, type District } from "@/lib/content/districts";
 import { Badge } from "@/components/ui/badge";
 
+const generateAnchorId = (title: string): string => {
+  return title
+    .toLowerCase()
+    .replace(/:/g, '') // Remove colons
+    .replace(/\(/g, '') // Remove opening parenthesis
+    .replace(/\)/g, '') // Remove closing parenthesis
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/[^\w-]+/g, ''); // Remove other non-alphanumeric characters except hyphens
+};
+
 export default function DistritosPage() {
   const pageTitle = "Os Distritos de Night City";
   const mainIntro = "Night City é uma metrópole vasta e complexa, dividida em múltiplos distritos, cada um com sua própria identidade, cultura, perigos e oportunidades. Explore as diferentes faces da cidade, desde os arranha-céus corporativos do City Center até as favelas perigosas de Pacifica e as indústrias poluídas de Santo Domingo.";
@@ -36,6 +46,7 @@ export default function DistritosPage() {
             {districts.map((district: District, index: number) => (
               <Card 
                 key={index} 
+                id={generateAnchorId(district.name)}
                 className="shadow-lg rounded-lg overflow-hidden border-2 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-xl"
                 style={{ 
                   borderColor: district.borderColor,
@@ -96,3 +107,5 @@ export default function DistritosPage() {
     </div>
   );
 }
+
+    

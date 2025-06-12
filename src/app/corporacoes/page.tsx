@@ -5,6 +5,16 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Building } from "lucide-react";
 import { corporations, type Corporation } from "@/lib/content/corporations";
 
+const generateAnchorId = (title: string): string => {
+  return title
+    .toLowerCase()
+    .replace(/:/g, '') // Remove colons
+    .replace(/\(/g, '') // Remove opening parenthesis
+    .replace(/\)/g, '') // Remove closing parenthesis
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/[^\w-]+/g, ''); // Remove other non-alphanumeric characters except hyphens
+};
+
 export default function CorporacoesPage() {
   const pageTitle = "As Megacorporações de Night City";
   const mainIntro = "Em Night City, o governo é uma piada. Quem manda de verdade são as megacorporações. Elas controlam tudo: a economia, a tecnologia, a mídia, a segurança e até mesmo a vida das pessoas. São como países dentro de um país, mas sem nenhuma responsabilidade social. Conheça os verdadeiros donos de Night City.";
@@ -33,6 +43,7 @@ export default function CorporacoesPage() {
             {corporations.map((corp: Corporation, index: number) => (
               <Card 
                 key={index} 
+                id={generateAnchorId(corp.name)}
                 className="shadow-lg border-2 rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-xl"
                 style={{ 
                   borderColor: corp.accentColor, 
@@ -76,3 +87,5 @@ export default function CorporacoesPage() {
     </div>
   );
 }
+
+    

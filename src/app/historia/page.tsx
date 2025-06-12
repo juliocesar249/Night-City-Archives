@@ -6,6 +6,16 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Home, Users, Building, ArrowRight } from "lucide-react";
 
+const generateAnchorId = (title: string): string => {
+  return title
+    .toLowerCase()
+    .replace(/:/g, '') // Remove colons
+    .replace(/\(/g, '') // Remove opening parenthesis
+    .replace(/\)/g, '') // Remove closing parenthesis
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/[^\w-]+/g, ''); // Remove other non-alphanumeric characters except hyphens
+};
+
 export default function HistoriaPage() {
   const pageTitle = "A História de Night City";
   const mainIntro = "Night City é a joia mais suja e brilhante da Costa Oeste dos Estados Unidos. Ela é a materialização do sonho de um cara visionário (ou maluco, dependendo do ponto de vista) que queria criar uma cidade sem as amarras do governo e da burocracia. O resultado? Um paraíso distópico onde tudo é à base de dinheiro, poder e muita violência.";
@@ -77,7 +87,10 @@ export default function HistoriaPage() {
       <main className="flex flex-1 flex-col items-center p-4 sm:p-8 bg-background">
         <ScrollArea className="w-full h-[calc(100vh-100px)]"> 
           <div className="w-full max-w-3xl mx-auto space-y-8">
-            <Card className="shadow-xl border-foreground rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:scale-102">
+            <Card 
+              className="shadow-xl border-foreground rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:scale-102"
+              style={{ borderColor: 'hsl(var(--foreground))' }}
+            >
               <CardHeader className="bg-card-foreground p-6">
                 <CardTitle className="font-headline text-3xl sm:text-4xl text-center text-primary">Night City: Uma Cidade de Sonhos e Pesadelos</CardTitle>
               </CardHeader>
@@ -91,8 +104,12 @@ export default function HistoriaPage() {
             {sections.map((section, index) => (
               <Card 
                 key={index} 
+                id={generateAnchorId(section.title)}
                 className="shadow-lg border-primary rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-xl"
-                style={{ boxShadow: `0 0 10px 2px hsl(var(--primary))` }}
+                style={{ 
+                  borderColor: 'hsl(var(--primary))', 
+                  boxShadow: `0 0 10px 2px hsl(var(--primary))` 
+                }}
               >
                 <CardHeader className="bg-black p-6">
                   <CardTitle className="font-headline text-2xl sm:text-3xl text-primary">{section.title}</CardTitle>
@@ -123,3 +140,5 @@ export default function HistoriaPage() {
     </div>
   );
 }
+
+    

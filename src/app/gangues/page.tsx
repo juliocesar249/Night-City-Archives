@@ -5,6 +5,15 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Users } from "lucide-react";
 import { gangs, type Gang } from "@/lib/content/gangs";
 
+const generateAnchorId = (title: string): string => {
+  return title
+    .toLowerCase()
+    .replace(/:/g, '') // Remove colons
+    .replace(/\(/g, '') // Remove opening parenthesis
+    .replace(/\)/g, '') // Remove closing parenthesis
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/[^\w-]+/g, ''); // Remove other non-alphanumeric characters except hyphens
+};
 
 export default function GanguesPage() {
   const pageTitle = "As Gangues de Night City";
@@ -14,7 +23,6 @@ export default function GanguesPage() {
   const defaultGlowColor = 'hsl(var(--accent))';
   const defaultGradient = 'linear-gradient(to right, hsl(var(--card-foreground)), hsl(var(--muted)))';
   const defaultTitleColorClass = 'text-primary';
-
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -40,6 +48,7 @@ export default function GanguesPage() {
             {gangs.map((gang: Gang, index: number) => (
               <Card 
                 key={index} 
+                id={generateAnchorId(gang.name)}
                 className="shadow-lg rounded-lg overflow-hidden border-2 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-xl"
                 style={{
                   borderColor: gang.borderColor || defaultBorderColor,
@@ -80,3 +89,5 @@ export default function GanguesPage() {
     </div>
   );
 }
+
+    
