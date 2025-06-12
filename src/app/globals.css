@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,48 +34,63 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Default light theme sidebar colors (can be adjusted) */
+    --sidebar-background: 0 0% 98%; /* Light gray, almost white */
+    --sidebar-foreground: 0 0% 20%; /* Dark gray for text */
+    --sidebar-primary: 207 61% 50%; /* A more distinct blue for primary elements */
+    --sidebar-primary-foreground: 0 0% 100%; /* White text on sidebar primary */
+    --sidebar-accent: 0 0% 90%; /* Slightly darker gray for accents */
+    --sidebar-accent-foreground: 0 0% 10%; /* Dark gray text on sidebar accent */
+    --sidebar-border: 0 0% 85%; /* Border color for sidebar */
+    --sidebar-ring: 207 61% 65%; /* Ring color for focus states */
   }
   .dark {
-    --background: 222 84% 5%; /* Very Dark Blue */
-    --foreground: 200 15% 85%; /* Light Grey/Cyanish White for text */
-    --card: 222 70% 8%; /* Slightly Lighter Dark Blue for cards */
-    --card-foreground: 200 15% 85%;
-    --popover: 222 70% 8%;
-    --popover-foreground: 200 15% 85%;
-    --primary: 45 100% 50%; /* Cyberpunk Yellow */
-    --primary-foreground: 222 84% 5%; /* Dark Blue text on yellow */
-    --secondary: 210 50% 25%; /* Muted Cyan/Blue */
-    --secondary-foreground: 200 15% 75%;
-    --muted: 210 30% 20%;
-    --muted-foreground: 200 15% 55%;
-    --accent: 320 100% 55%; /* Neon Pink/Magenta */
+    --background: 222 84% 4.9%; /* Very Dark Blue (almost black) */
+    --foreground: 210 40% 98%; /* Light Grey/Off-white for text */
+    
+    --card: 222 83.1% 6.1%; /* Darker blue, slightly lighter than background */
+    --card-foreground: 210 40% 98%; /* Light Grey/Off-white for card text */
+    
+    --popover: 222 83.1% 6.1%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 51 100% 50%; /* Cyberpunk Yellow */
+    --primary-foreground: 222 84% 4.9%; /* Dark Blue text on yellow */
+    
+    --secondary: 180 100% 50%; /* Neon Cyan/Teal */
+    --secondary-foreground: 222 84% 4.9%; /* Dark Blue text on cyan */
+    
+    --muted: 217.2 32.6% 17.5%; /* Dark, muted blue */
+    --muted-foreground: 210 40% 60%; /* Lighter, muted gray for less important text */
+    
+    --accent: 330 100% 54.9%; /* Neon Pink/Magenta */
     --accent-foreground: 0 0% 100%; /* White text on pink */
-    --destructive: 0 70% 50%; /* Vivid Red */
-    --destructive-foreground: 0 0% 100%;
-    --border: 210 40% 30%; /* Dark Cyan/Blue border */
-    --input: 222 70% 10%; /* Dark input background */
-    --ring: 45 100% 55%; /* Slightly more intense yellow for ring */
+    
+    --destructive: 0 72.2% 50.6%; /* Vivid Red */
+    --destructive-foreground: 0 0% 100%; /* White text on red */
+    
+    --border: 217.2 32.6% 22.5%; /* Darker blue for borders */
+    --input: 217.2 32.6% 17.5%; /* Dark input background */
+    --ring: 51 100% 55%; /* Slightly more intense yellow for focus rings */
+    
     --chart-1: 180 100% 50%; /* Cyan */
     --chart-2: 300 100% 65%; /* Magenta */
     --chart-3: 50 100% 50%; /* Yellow */
     --chart-4: 240 100% 70%; /* Bright Blue */
     --chart-5: 120 100% 50%; /* Green */
-    --sidebar-background: 222 80% 7%;
-    --sidebar-foreground: 200 15% 70%;
-    --sidebar-primary: 45 100% 50%;
-    --sidebar-primary-foreground: 222 84% 5%;
-    --sidebar-accent: 222 60% 12%;
-    --sidebar-accent-foreground: 200 15% 90%;
-    --sidebar-border: 210 40% 25%;
-    --sidebar-ring: 45 100% 55%;
+    
+    --radius: 0.5rem;
+
+    /* Dark theme sidebar colors */
+    --sidebar-background: 222 80% 7%; /* Slightly lighter dark blue for sidebar bg */
+    --sidebar-foreground: 210 40% 85%; /* Lighter gray for sidebar text */
+    --sidebar-primary: 51 100% 50%; /* Cyberpunk Yellow for primary elements */
+    --sidebar-primary-foreground: 222 84% 4.9%; /* Dark blue text on yellow */
+    --sidebar-accent: 222 70% 10%; /* Darker, slightly desaturated blue for accents */
+    --sidebar-accent-foreground: 210 40% 95%; /* Very light gray for text on accent */
+    --sidebar-border: 222 70% 12%; /* Border for sidebar elements */
+    --sidebar-ring: 51 100% 55%; /* Yellow ring for focus states */
   }
 }
 
