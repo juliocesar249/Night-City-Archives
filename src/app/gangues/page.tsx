@@ -510,9 +510,9 @@ export default function GanguesPage() {
     },
     {
       name: "The Animals (Os Animais): Força Bruta, Músculos e Narcotráfico",
-      borderColor: "#FFEB3B", 
-      glowColor: "#FFC107", 
-      gradient: "linear-gradient(to right, #FFEB3B, #D32F2F)", 
+      borderColor: "#FFB700", 
+      glowColor: "#FFB700", 
+      gradient: "linear-gradient(to right, #FFB700, #FFFFFF)", 
       titleColorClass: "text-black",
       introduction: "Os Animals são a personificação da força física bruta em Night City. Esqueça cromo e implantes cibernéticos super avançados para combate. Essa gangue aposta na força muscular extrema, aprimorada por esteroides de ponta e um estilo de vida focado em ser o ápice da força humana. Eles são os gorilas do submundo, os \"muscleheads\" bombados de Night City.",
       sections: [
@@ -623,7 +623,12 @@ export default function GanguesPage() {
                   <p className="text-foreground text-base leading-relaxed italic">{gang.introduction}</p>
                   {gang.sections.map((section, sIndex) => (
                     <div key={sIndex} className="mt-4">
-                      <h3 className="font-headline text-xl text-accent mb-2">{section.title}</h3>
+                      <h3 
+                        className="font-headline text-xl mb-2" 
+                        style={{ color: gang.borderColor || defaultBorderColor }}
+                      >
+                        {section.title}
+                      </h3>
                       {section.content.map((paragraph, pIndex) => (
                          <p key={pIndex} className="text-foreground text-base leading-relaxed mb-2">
                            {paragraph}
