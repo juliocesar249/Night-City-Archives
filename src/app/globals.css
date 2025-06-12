@@ -21,6 +21,9 @@ body {
     --popover-foreground: 210 40% 98%;
     
     --primary: 51 100% 50%; /* Cyberpunk Yellow */
+    --primary-h: 51;
+    --primary-s: 100%;
+    --primary-l: 50%;
     --primary-foreground: 222 84% 4.9%; /* Dark Blue text on yellow */
     
     --secondary: 180 100% 50%; /* Neon Cyan/Teal */
