@@ -4,17 +4,18 @@ import type { Figure } from './types';
 export const saburoArasaka: Figure = {
   id: "saburo-arasaka",
   name: "Saburo Arasaka",
-  affiliation: "Arasaka Corporation (Founder, CEO)",
+  affiliation: "Corporação Arasaka (Fundador, CEO)",
   bio: [
-    "Saburo Arasaka was the immensely powerful and ancient founder and CEO of the Arasaka Corporation. Born in 1919, he transformed Arasaka from a small manufacturing company into a global superpower in security, banking, and military hardware.",
-    "A staunch Japanese imperialist and a veteran of World War II, Saburo was driven by a vision of a strong, Arasaka-led Japan and a world order maintained by corporate power. He was ruthless, intelligent, and lived for over 150 years thanks to advanced medical technology.",
-    "His obsession with legacy and control led to the development of the 'Secure Your Soul' program (Soulkiller), aiming for a form of digital immortality. He was murdered by his son Yorinobu in 2077, an event that V witnesses and becomes entangled in."
+    "Saburo Arasaka foi o imensamente poderoso e antigo fundador e CEO da Corporação Arasaka. Nascido em 1919, ele transformou a Arasaka de uma pequena empresa de manufatura em uma superpotência global em segurança, bancos e hardware militar.",
+    "Um fervoroso imperialista japonês e veterano da Segunda Guerra Mundial, Saburo era movido por uma visão de um Japão forte liderado pela Arasaka e uma ordem mundial mantida pelo poder corporativo. Ele era implacável, inteligente e viveu por mais de 150 anos graças à tecnologia médica avançada.",
+    "Sua obsessão por legado e controle levou ao desenvolvimento do programa 'Secure Your Soul' (Soulkiller), visando uma forma de imortalidade digital. Ele foi assassinado por seu filho Yorinobu em 2077, um evento que V testemunha e no qual se envolve."
   ],
-  iconicQuote: "Discipline. Control. Power. That is the Arasaka way.",
-  status: "Deceased (Engram exists)",
+  iconicQuote: "Disciplina. Controle. Poder. Esse é o caminho Arasaka.",
+  status: "Falecido (Engrama existe)",
   imagePlaceholder: "https://placehold.co/300x400.png",
   imageAiHint: "old japanese ceo",
   accentColor: "#FF0000", // Arasaka Red
   headerBackgroundColor: "#000000",
   titleColorClass: "text-[#FF0000]",
 };
+

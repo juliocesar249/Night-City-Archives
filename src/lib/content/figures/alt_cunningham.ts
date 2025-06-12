@@ -4,17 +4,18 @@ import type { Figure } from './types';
 export const altCunningham: Figure = {
   id: "alt-cunningham",
   name: "Altiera 'Alt' Cunningham",
-  affiliation: "Netrunner, Creator of Soulkiller",
+  affiliation: "Netrunner, Criadora do Soulkiller",
   bio: [
-    "Alt Cunningham was a brilliant netrunner and the original creator of the Soulkiller program. In the early 2000s, she was one of the most skilled netrunners in the world, capable of navigating the deepest parts of the Net.",
-    "She was Johnny Silverhand's girlfriend. Arasaka kidnapped her to force her to recreate Soulkiller for them. During an attempted rescue by Johnny and his crew in 2013, Alt's consciousness was digitized by an early version of Soulkiller. She became a powerful AI, a 'ghost in the machine,' existing beyond the Blackwall.",
-    "In 2077, her engram plays a crucial role in V's story, possessing unique knowledge and abilities concerning the Relic and the digital afterlife."
+    "Alt Cunningham foi uma brilhante netrunner e a criadora original do programa Soulkiller. No início dos anos 2000, ela era uma das netrunners mais habilidosas do mundo, capaz de navegar pelas partes mais profundas da Rede.",
+    "Ela era namorada de Johnny Silverhand. A Arasaka a sequestrou para forçá-la a recriar o Soulkiller para eles. Durante uma tentativa de resgate por Johnny e sua equipe em 2013, a consciência de Alt foi digitalizada por uma versão inicial do Soulkiller. Ela se tornou uma IA poderosa, um 'fantasma na máquina', existindo além da Blackwall.",
+    "Em 2077, seu engrama desempenha um papel crucial na história de V, possuindo conhecimento e habilidades únicas sobre o Relic e a vida após a morte digital."
   ],
-  iconicQuote: "The Net is everything, and nothing. A reflection of what we are, and what we've lost.",
-  status: "Digitized (AI Entity)",
+  iconicQuote: "A Rede é tudo, e nada. Um reflexo do que somos, e do que perdemos.",
+  status: "Digitalizada (Entidade IA)",
   imagePlaceholder: "https://placehold.co/300x400.png",
   imageAiHint: "female netrunner",
   accentColor: "hsl(var(--accent))", // Neon Pink/Magenta
   headerBackgroundColor: "hsl(var(--card))",
   titleColorClass: "text-accent",
 };
+

@@ -5,17 +5,18 @@ export const johnnySilverhand: Figure = {
   id: "johnny-silverhand",
   name: "Johnny Silverhand",
   aliases: ["Robert John Linder"],
-  affiliation: "Rockerboy, Samurai (Band), Ex-Military (NUSA)",
+  affiliation: "Rockerboy, Samurai (Banda), Ex-Militar (NUSA)",
   bio: [
-    "Johnny Silverhand was a legendary rockerboy, frontman of the band Samurai, and a key figure in the anti-corporation movement of the early 21st century.",
-    "Known for his charisma, rebellious spirit, and iconic silver-handed cybernetic arm, Johnny fought against corporate oppression, most notably Arasaka Corporation.",
-    "His crusade culminated in the infamous 2023 assault on Arasaka Tower in Night City, an event that ended with a tactical nuke detonation and Johnny's presumed death. However, his consciousness was captured by Arasaka's Soulkiller program."
+    "Johnny Silverhand foi um lendário rockerboy, vocalista da banda Samurai e uma figura chave no movimento anti-corporações do início do século XXI.",
+    "Conhecido por seu carisma, espírito rebelde e seu icônico braço cibernético prateado, Johnny lutou contra a opressão corporativa, mais notavelmente a Corporação Arasaka.",
+    "Sua cruzada culminou no infame ataque de 2023 à Torre Arasaka em Night City, um evento que terminou com a detonação de uma bomba nuclear tática e a presumível morte de Johnny. No entanto, sua consciência foi capturada pelo programa Soulkiller da Arasaka."
   ],
-  iconicQuote: "Wake the f*** up, Samurai. We have a city to burn.",
-  status: "Deceased (Consciousness Digitized)",
+  iconicQuote: "Acorda, porra, Samurai. Nós temos uma cidade para queimar.",
+  status: "Falecido (Consciência Digitalizada)",
   imagePlaceholder: "https://placehold.co/300x400.png",
   imageAiHint: "rocker musician",
   accentColor: "hsl(var(--primary))", // Cyberpunk Yellow
   headerBackgroundColor: "hsl(var(--card))",
   titleColorClass: "text-primary",
 };
+
