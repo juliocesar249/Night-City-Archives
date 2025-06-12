@@ -28,6 +28,7 @@ body {
     
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 210 40% 60%;
+    --muted-foreground-rgb: 130, 142, 160; /* RGB for muted-foreground for hsla() */
     
     --accent: 330 100% 54.9%; /* Neon Pink/Magenta */
     --accent-foreground: 0 0% 100%; /* White text on pink */
@@ -67,3 +68,4 @@ body {
     @apply bg-background text-foreground;
   }
 }
+

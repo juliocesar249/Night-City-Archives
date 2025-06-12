@@ -42,15 +42,14 @@ export function NightCityInteractiveMap({
   // You WILL LIKELY NEED TO ADJUST x, y, width, height for each district 
   // to match your specific SVG layout. These are very rough guesses.
   const districtHotspots: Record<string, { x: string, y: string, width: string, height: string, name: string }> = {
-    "watson-o-berco-e-o-abandono": { x: "0", y: "0", width: "200", height: "150", name: "Watson" },
-    "westbrook-o-luxo-deteriorado-e-a-ordem-dos-tyger-claws": { x: "360", y: "100", width: "180", height: "120", name: "Westbrook" },
-    "city-center-o-coracao-de-neon-do-poder-corporativo": { x: "300", y: "250", width: "250", height: "200", name: "City Center" },
-    "heywood-a-alma-multifacetada-de-night-city": { x: "300", y: "460", width: "250", height: "180", name: "Heywood" },
-    "santo-domingo-o-motor-industrial-e-o-caldeirao-de-classes": { x: "100", y: "350", width: "180", height: "250", name: "Santo Domingo" },
-    "pacifica-o-paraiso-esquecido-vazio-e-perigoso": { x: "50", y: "620", width: "200", height: "150", name: "Pacifica" },
-    "dogtown-o-feudo-anarquico-do-coronel-hansen": { x: "100", y: "780", width: "150", height: "100", name: "Dogtown (Pacifica Sub)" },
-    "as-terras-baldias-badlands-o-deserto-sem-lei": { x: "600", y: "50", width: "250", height: "700", name: "Badlands (Surrounding Area)" },
-    // Add more with estimated coordinates if you have more districts in your `districts` array
+    "watson-o-berco-e-o-abandono": { x: "350", y: "30", width: "200", height: "200", name: "Watson" },
+    "westbrook-o-luxo-deteriorado-e-a-ordem-dos-tyger-claws": { x: "530", y: "150", width: "220", height: "180", name: "Westbrook" },
+    "city-center-o-coracao-de-neon-do-poder-corporativo": { x: "380", y: "280", width: "200", height: "180", name: "City Center" },
+    "heywood-a-alma-multifacetada-de-night-city": { x: "350", y: "470", width: "230", height: "200", name: "Heywood" },
+    "santo-domingo-o-motor-industrial-e-o-caldeirao-de-classes": { x: "100", y: "400", width: "220", height: "250", name: "Santo Domingo" },
+    "pacifica-o-paraiso-esquecido-vazio-e-perigoso": { x: "100", y: "660", width: "250", height: "150", name: "Pacifica" },
+    "dogtown-o-feudo-anarquico-do-coronel-hansen": { x: "360", y: "680", width: "180", height: "120", name: "Dogtown" },
+    "as-terras-baldias-badlands-o-deserto-sem-lei": { x: "650", y: "50", width: "200", height: "600", name: "Badlands" },
   };
 
   return (
@@ -65,17 +64,14 @@ export function NightCityInteractiveMap({
         <title id="mapTitle">Mapa de Night City</title>
         <desc>Mapa interativo dos distritos de Night City. Clique ou passe o mouse sobre uma área para destacá-la e ver detalhes.</desc>
         
-        {/* 1. Your complex SVG path as a non-interactive base layer */}
-        {/* Replace the 'd' attribute with your actual single path data from your SVG file. */}
         <path
-          d={yourComplexMapPathData} // <<<< ----- YOUR SINGLE COMPLEX SVG PATH DATA GOES HERE
-          fill="hsl(var(--muted))" // Base color for the map drawing
-          stroke="hsl(var(--border))" // Outline for the map drawing
+          d={yourComplexMapPathData} 
+          fill="hsl(var(--muted))" 
+          stroke="hsl(var(--border))" 
           strokeWidth="0.5"
-          className="pointer-events-none" // Make sure this base map layer doesn't interfere with clicks
+          className="pointer-events-none" 
         />
 
-        {/* 2. Interactive Hotspot Overlays */}
         <g>
           {districts.map((district) => {
             const districtId = generateAnchorId(district.name);
@@ -83,25 +79,29 @@ export function NightCityInteractiveMap({
             
             if (!hotspot) {
               console.warn(`No hotspot definition for district: ${district.name} (ID: ${districtId})`);
-              return null; // Or render a default small rect as a warning
+              return null;
             }
 
             const isActive = activeDistrictId === districtId;
             const isHovered = hoveredDistrictId === districtId;
             
-            let fill = "transparent"; // Default: hotspots are invisible
+            // Default faint visibility
+            let fill = "hsla(var(--muted-foreground-rgb), 0.05)"; // Very faint fill
+            let stroke = "hsla(var(--muted-foreground-rgb), 0.2)"; // Faint border
+            let strokeWidth = 0.3;
+            let opacity = 1; // Default opacity
+
             if (isActive) {
-              fill = district.borderColor ? `${district.borderColor}99` : 'hsl(var(--primary) / 0.6)'; // 60% opacity active
+              fill = district.borderColor ? `${district.borderColor}99` : 'hsl(var(--primary) / 0.6)'; 
+              stroke = district.borderColor || 'hsl(var(--foreground))';
+              strokeWidth = 2;
             } else if (isHovered) {
-              fill = district.borderColor ? `${district.borderColor}66` : 'hsl(var(--primary) / 0.4)'; // 40% opacity hover
+              fill = district.borderColor ? `${district.borderColor}66` : 'hsl(var(--primary) / 0.4)'; 
+              stroke = district.borderColor || 'hsl(var(--foreground))';
+              strokeWidth = 1.5;
             }
             
-            let stroke = isActive || isHovered 
-              ? (district.borderColor || 'hsl(var(--foreground))')
-              : 'transparent'; // No border by default
-
-            let strokeWidth = isActive ? 2 : isHovered ? 1.5 : 0;
-            let zIndex = isActive ? 10 : isHovered ? 5 : 1;
+            const zIndex = isActive ? 10 : isHovered ? 5 : 1;
 
             return (
               <g key={districtId}>
@@ -114,6 +114,7 @@ export function NightCityInteractiveMap({
                   fill={fill}
                   stroke={stroke}
                   strokeWidth={strokeWidth}
+                  opacity={opacity} // Apply opacity
                   onClick={() => onDistrictSelect(districtId)}
                   onMouseEnter={() => onDistrictHover(districtId)}
                   onMouseLeave={() => onDistrictHover(null)}
@@ -121,18 +122,21 @@ export function NightCityInteractiveMap({
                   style={{ zIndex }}
                   aria-label={district.name}
                 />
-                {/* Optional: Add a text label for the hotspot - good for debugging positions */}
-                {/* <text 
+                {/* Optional: Text label for debugging hotspot name - can be removed later */}
+                {/* 
+                <text 
                   x={parseFloat(hotspot.x) + parseFloat(hotspot.width) / 2} 
                   y={parseFloat(hotspot.y) + parseFloat(hotspot.height) / 2} 
                   textAnchor="middle" 
                   dominantBaseline="middle"
-                  fontSize="10" 
-                  fill="hsl(var(--foreground))"
-                  className="pointer-events-none"
+                  fontSize="8" 
+                  fill="hsl(var(--foreground))" // Ensure text is visible
+                  className="pointer-events-none" // So text doesn't interfere with rect events
+                  opacity={0.7} // Make it slightly transparent
                 >
                   {hotspot.name}
-                </text> */}
+                </text>
+                */}
               </g>
             );
           })}
