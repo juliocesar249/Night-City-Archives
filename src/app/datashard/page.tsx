@@ -172,7 +172,7 @@ export default function DataShardPage() {
         }
         if (quizData && shuffledQuizItems.length > 0) {
           return (
-            <ScrollArea className="h-auto max-h-[550px] w-full p-1">
+            <ScrollArea className="w-full h-auto max-h-[550px] p-1">
               <div className="space-y-6">
                 <h3 className="text-2xl font-headline text-accent text-center mb-4">{quizData.quizTitle}</h3>
                 {shuffledQuizItems.map((item, index) => (
@@ -226,7 +226,7 @@ export default function DataShardPage() {
             </ScrollArea>
           );
         }
-        return <p className="text-lg text-muted-foreground text-center py-10">Clique em "Gerar Quiz" para testar seus conhecimentos sobre Night City.</p>;
+        return <p className="text-lg text-muted-foreground text-center py-10">Clique em "Gerar Novo Quiz" para testar seus conhecimentos sobre Night City.</p>;
 
       case "news":
         if (isNewsLoading) {
@@ -256,7 +256,7 @@ export default function DataShardPage() {
             </ScrollArea>
           );
         }
-        return <p className="text-lg text-muted-foreground text-center py-10">Clique em "Gerar Notícias" para ver as últimas de Night City.</p>;
+        return <p className="text-lg text-muted-foreground text-center py-10">Clique em "Gerar Novas Notícias" para ver as últimas de Night City.</p>;
       default:
         return <p className="text-lg text-muted-foreground text-center py-10">Selecione uma opção acima.</p>;
     }
@@ -316,9 +316,15 @@ export default function DataShardPage() {
             </TabsList>
 
             <CardContent className="p-4 min-h-[320px] flex flex-col items-center justify-start bg-black/20 rounded-md border border-border shadow-inner">
-              <TabsContent value="snippet" className="w-full mt-0">{renderContent()}</TabsContent>
-              <TabsContent value="quiz" className="w-full mt-0">{renderContent()}</TabsContent>
-              <TabsContent value="news" className="w-full mt-0">{renderContent()}</TabsContent>
+              <TabsContent value="snippet" className="w-full mt-0 h-full">
+                {renderContent()}
+              </TabsContent>
+              <TabsContent value="quiz" className="w-full mt-0 h-full">
+                {renderContent()}
+              </TabsContent>
+              <TabsContent value="news" className="w-full mt-0 h-full">
+                {renderContent()}
+              </TabsContent>
             </CardContent>
           </Tabs>
 
