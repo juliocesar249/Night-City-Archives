@@ -26,7 +26,7 @@ export default function GanguesPage() {
       <main className="flex flex-1 flex-col items-center p-4 sm:p-8 bg-background">
         <ScrollArea className="w-full h-[calc(100vh-100px)]">
           <div className="w-full max-w-4xl mx-auto space-y-8">
-            <Card className="shadow-xl border-2 border-accent rounded-lg overflow-hidden">
+            <Card className="shadow-xl border-2 border-primary-foreground rounded-lg overflow-hidden">
               <CardHeader className="bg-card-foreground p-6">
                 <CardTitle className="font-headline text-3xl sm:text-4xl text-center text-primary">O Submundo em Ação</CardTitle>
               </CardHeader>
@@ -80,5 +80,4 @@ export default function GanguesPage() {
     </div>
   );
 }
-
     
