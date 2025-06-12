@@ -14,7 +14,7 @@ export default function GanguesPage() {
       borderColor: "#c90000",
       glowColor: "#c90000",
       gradient: "linear-gradient(to right, #c90000, #333333)",
-      titleColorClass: "text-primary", // Ensure good contrast
+      titleColorClass: "text-primary", 
       introduction: "Os Maelstrom são, sem sombra de dúvida, uma das gangues mais perturbadoras e temidas de Night City. Eles não são apenas criminosos; são uma encarnação do perigo da obsessão cibernética e da linha tênue entre aprimoramento e psicose. Seus membros são facilmente reconhecíveis por suas modificações corporais extremas, muitas vezes envolvendo grandes quantidades de cromo e implantes que distorcem a forma humana, e seus olhos que brilham com luzes vermelhas intensas, um símbolo de sua insanidade e dependência.",
       sections: [
         {
@@ -64,9 +64,9 @@ export default function GanguesPage() {
     },
     {
       name: "Tyger Claws: A Ordem do Neon e a Sombra da Yakuza",
-      borderColor: "#FF00FF", // Magenta/Pink for Tyger Claws
+      borderColor: "#FF00FF", 
       glowColor: "#FF00FF",
-      gradient: "linear-gradient(to right, #FF00FF, #330033)", // Magenta to dark purple
+      gradient: "linear-gradient(to right, #FF00FF, #330033)", 
       titleColorClass: "text-white",
       introduction: "Os Tyger Claws são uma das gangues mais proeminentes e estilosas de Night City, com uma forte influência na cultura e no submundo japonês. Diferente de muitas gangues que prosperam no caos puro, os Tyger Claws operam com uma ordem brutal e uma estrutura hierárquica que remete às tradições da Yakuza japonesa. Eles são conhecidos por seu estilo de vida luxuoso, seus aprimoramentos cibernéticos cromados e suas motocicletas neon de alta velocidade, que rasgam as ruas de Night City como fantasmas luminosos.",
       sections: [
@@ -121,9 +121,9 @@ export default function GanguesPage() {
     },
     {
       name: "Valentinos: Honra, Fé e Sangue nas Ruas de Heywood",
-      borderColor: "#FFD700", // Gold/Yellow for Valentinos
-      glowColor: "#FFD700",
-      gradient: "linear-gradient(to right, #FFD700, #8B0000)", // Gold to dark red
+      borderColor: "#E6DC22", 
+      glowColor: "#E6DC22",
+      gradient: "linear-gradient(to right, #E6DC22, #E05200)", 
       titleColorClass: "text-black",
       introduction: "Os Valentinos são uma das gangues mais numerosas e influentes de Night City, com uma presença esmagadora no distrito de Heywood. Eles se destacam não apenas por sua força e controle territorial, mas também por sua profunda conexão com a cultura latina, um forte senso de comunidade, lealdade à família (de sangue ou não) e uma fé religiosa, ainda que distorcida para se adaptar à brutalidade da vida nas ruas.",
       sections: [
@@ -182,10 +182,10 @@ export default function GanguesPage() {
     },
     {
       name: "Voodoo Boys: A Voz Digital de Pacifica e os Guardiões do Old Net",
-      borderColor: "#00FF00", // Bright Green for Voodoo Boys
-      glowColor: "#00FF00",
-      gradient: "linear-gradient(to right, #00FF00, #003300)", // Bright green to dark green
-      titleColorClass: "text-black",
+      borderColor: "#6992CF", 
+      glowColor: "#6992CF",
+      gradient: "linear-gradient(to right, #6992CF, #000000)", 
+      titleColorClass: "text-primary",
       introduction: "Os Voodoo Boys são, de longe, uma das gangues mais enigmáticas e tecnologicamente avançadas de Night City. Eles não são apenas uma gangue; são uma comunidade de netrunners e hackers profundamente enraizados na cultura haitiana e na mística do vodu, operando no distrito abandonado de Pacifica. Sua principal preocupação não é o controle territorial físico (embora o exerçam com brutalidade quando necessário), mas sim o domínio do ciberespaço, a busca pela sabedoria do Old Net (a antiga internet) e a proteção de sua comunidade contra a invasão corporativa e o controle da NetWatch.",
       sections: [
         {
@@ -244,9 +244,9 @@ export default function GanguesPage() {
     },
     {
       name: "The Mox: Os Vingadores dos Oprimidos e a Paz no Meio do Caos",
-      borderColor: "#FF69B4", // Hot Pink for The Mox
+      borderColor: "#FF69B4", 
       glowColor: "#FF69B4",
-      gradient: "linear-gradient(to right, #FF69B4, #4A003D)", // Hot pink to dark magenta/purple
+      gradient: "linear-gradient(to right, #FF69B4, #4A003D)", 
       titleColorClass: "text-white",
       introduction: "As Mox são uma gangue única em Night City, destacando-se por sua ideologia de proteção e justiça para os oprimidos, em vez da tradicional busca por poder territorial e lucro puro. Elas se formaram como uma resposta direta à brutalidade e à exploração, especialmente contra trabalhadores do sexo, braindancers e qualquer pessoa vulnerável. Elas são as \"mães\" e \"irmãs\" dos que não têm a quem recorrer, e embora sejam implacáveis com quem as desafia, sua motivação principal é a defesa.",
       sections: [
@@ -304,9 +304,9 @@ export default function GanguesPage() {
     },
     {
       name: "Barghest: O Exército Particular de Dogtown e o Reino de Hansen",
-      borderColor: "#4CAF50", // Military Green for Barghest
+      borderColor: "#4CAF50", 
       glowColor: "#4CAF50",
-      gradient: "linear-gradient(to right, #4CAF50, #2E3B2E)", // Military green to dark olive
+      gradient: "linear-gradient(to right, #4CAF50, #2E3B2E)", 
       titleColorClass: "text-white",
       introduction: "Os Barghest são muito mais do que uma gangue; eles são uma milícia privada e o braço militar do Coronel Kurt Hansen, o senhor da guerra que governa Dogtown com punho de ferro. Eles são a personificação da lei e da ordem (ou da falta dela) dentro de Dogtown, uma força implacável e bem organizada que impõe a vontade de Hansen sem questionamentos. Sua história é a de um golpe de estado em miniatura, de militares desiludidos que encontraram um novo propósito na anarquia controlada.",
       sections: [
@@ -369,9 +369,9 @@ export default function GanguesPage() {
     },
     {
       name: "Scavengers (Rapineiros): O Lado Mais Sombrio do Submundo de Night City",
-      borderColor: "#616161", // Dark Gray for Scavengers
-      glowColor: "#757575", // Lighter gray glow
-      gradient: "linear-gradient(to right, #424242, #1a1a1a)", // Dark gray to very dark gray/black
+      borderColor: "#616161", 
+      glowColor: "#757575", 
+      gradient: "linear-gradient(to right, #424242, #1a1a1a)", 
       titleColorClass: "text-neutral-300",
       introduction: "Se Night City já é um lugar barra pesada, os Scavengers são o esgoto do esgoto, o lado mais repugnante e cruel do submundo. Eles não são uma gangue com ideologia ou território fixo, tipo os Valentinos ou os Tyger Claws. Na real, os Scavengers são uma rede de criminosos oportunistas e sem escrúpulos que se especializam em um dos comércios mais nojentos da cidade: o tráfico de órgãos e implantes cibernéticos humanos, muitas vezes roubados de vítimas vivas. Pensa num pesadelo de ficção científica, eles são isso.",
       sections: [
@@ -439,9 +439,9 @@ export default function GanguesPage() {
     },
     {
       name: "6th Street (Sexta Rua / Seis-de-Rua): A Gangue dos \"Veteranos\" e do Orgulho Americano",
-      borderColor: "#0D47A1", // Dark Blue for 6th Street
-      glowColor: "#1976D2", // Lighter blue glow
-      gradient: "linear-gradient(to right, #0D47A1, #B71C1C)", // Dark blue to dark red (USA theme)
+      borderColor: "#0D47A1", 
+      glowColor: "#1976D2", 
+      gradient: "linear-gradient(to right, #0D47A1, #B71C1C)", 
       titleColorClass: "text-white",
       introduction: "A Gangue dos Sixers é uma das maiores e mais estabelecidas gangues de Night City, e eles têm uma vibe meio \"milícia patriota\" misturada com gangue de rua. Eles se veem como os \"guardiões\" dos cidadãos comuns, especialmente nas áreas que eles consideram seu território, e têm um orgulho danado de sua herança \"americana\".",
       sections: [
@@ -510,9 +510,9 @@ export default function GanguesPage() {
     },
     {
       name: "The Animals (Os Animais): Força Bruta, Músculos e Narcotráfico",
-      borderColor: "#FFEB3B", // Bright Yellow/Orange for Animals (like their body paint)
-      glowColor: "#FFC107", // Amber glow
-      gradient: "linear-gradient(to right, #FFEB3B, #D32F2F)", // Yellow to strong red
+      borderColor: "#FFEB3B", 
+      glowColor: "#FFC107", 
+      gradient: "linear-gradient(to right, #FFEB3B, #D32F2F)", 
       titleColorClass: "text-black",
       introduction: "Os Animals são a personificação da força física bruta em Night City. Esqueça cromo e implantes cibernéticos super avançados para combate. Essa gangue aposta na força muscular extrema, aprimorada por esteroides de ponta e um estilo de vida focado em ser o ápice da força humana. Eles são os gorilas do submundo, os \"muscleheads\" bombados de Night City.",
       sections: [
