@@ -8,7 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Map as MapIconLucideIO, Users, Building as BuildingIconLucide, Anchor, Building2, Home, Factory, BarChartBig, Dog, MountainSnow } from "lucide-react";
 import { districts, type District } from "@/lib/content/districts";
 import { Badge } from "@/components/ui/badge";
-import { NightCityInteractiveMap } from '@/components/map/NightCityInteractiveMap'; // Import the map component
+import { NightCityInteractiveMap } from '@/components/map/NightCityInteractiveMap';
 
 const iconMap: Record<string, React.ElementType> = {
   Anchor, Building2, Home, Factory, BarChartBig, Dog, MountainSnow, MapIconLucideIO
@@ -29,7 +29,7 @@ export default function DistritosPage() {
   const mainIntro = "Night City é uma metrópole vasta e complexa, dividida em múltiplos distritos, cada um com sua própria identidade, cultura, perigos e oportunidades. Explore as diferentes faces da cidade, desde os arranha-céus corporativos do City Center até as favelas perigosas de Pacifica e as indústrias poluídas de Santo Domingo.";
 
   const [hoveredDistrictId, setHoveredDistrictId] = useState<string | null>(null);
-  const [activeDistrictId, setActiveDistrictId] = useState<string | null>(null);
+  const [activeDistrictId, setActiveDistrictId] = useState<string | null>(null); // Initialize to null
   const districtRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const handleDistrictSelection = (districtId: string) => {
@@ -40,18 +40,22 @@ export default function DistritosPage() {
     }
   };
   
-  // Effect to potentially set an initial active district or handle deep links
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const hash = window.location.hash.substring(1); // Remove #
-      if (hash && districts.some(d => generateAnchorId(d.name) === hash)) {
-        setActiveDistrictId(hash);
-      } else if (districts.length > 0) {
-        // Optionally set the first district as active by default
-        // setActiveDistrictId(generateAnchorId(districts[0].name));
+      const hash = window.location.hash.substring(1);
+      const foundDistrict = districts.find(d => generateAnchorId(d.name) === hash);
+      if (foundDistrict) {
+        setActiveDistrictId(generateAnchorId(foundDistrict.name));
+         // Scroll to the element if hash is present
+        const ref = districtRefs.current[generateAnchorId(foundDistrict.name)];
+        if (ref) {
+            setTimeout(() => ref.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+        }
+      } else {
+        setActiveDistrictId(null); // Ensure it's null if no valid hash
       }
     }
-  }, []);
+  }, []); // Empty dependency array ensures it runs once on mount
 
 
   return (
@@ -83,7 +87,7 @@ export default function DistritosPage() {
           onDistrictHover={setHoveredDistrictId}
         />
 
-        <ScrollArea className="w-full h-[calc(100vh-280px)] md:h-[calc(100vh-240px)] mt-4"> {/* Adjusted height */}
+        <ScrollArea className="w-full h-[calc(100vh-280px)] md:h-[calc(100vh-240px)] mt-4">
           <div className="w-full max-w-4xl mx-auto space-y-8">
             {districts.map((district: District) => {
               const DistrictIcon = district.iconName ? iconMap[district.iconName] : MapIconLucideIO;
@@ -91,12 +95,12 @@ export default function DistritosPage() {
               return (
               <Card 
                 key={district.name} 
-                id={districtId} // This is the anchor ID for scrolling
+                id={districtId}
                 ref={el => districtRefs.current[districtId] = el}
                 onMouseEnter={() => setHoveredDistrictId(districtId)}
                 onMouseLeave={() => setHoveredDistrictId(null)}
                 onClick={() => handleDistrictSelection(districtId)}
-                className="shadow-lg rounded-lg overflow-hidden border-2 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-xl cursor-pointer"
+                className="shadow-lg rounded-lg overflow-hidden border-2 transition-all duration-300 ease-in-out hover:shadow-xl cursor-pointer"
                 style={{ 
                   borderColor: activeDistrictId === districtId ? district.borderColor : (hoveredDistrictId === districtId ? district.borderColor : 'hsl(var(--border))'),
                   boxShadow: activeDistrictId === districtId ? `0 0 15px 3px ${district.borderColor}` : (hoveredDistrictId === districtId ? `0 0 10px 2px ${district.borderColor}` : 'none'),
@@ -107,7 +111,7 @@ export default function DistritosPage() {
                   className="p-6 flex flex-row items-center gap-3" 
                   style={{ background: district.gradient }}
                 >
-                  <DistrictIcon className="h-7 w-7" style={{ color: district.titleColorClass.includes('text-black') ? 'black': district.borderColor }} />
+                  <DistrictIcon className="h-7 w-7" style={{ color: 'black' }} />
                   <CardTitle className={`font-headline text-2xl sm:text-3xl ${district.titleColorClass}`}>
                     {district.name}
                   </CardTitle>
@@ -159,4 +163,3 @@ export default function DistritosPage() {
     </div>
   );
 }
-
