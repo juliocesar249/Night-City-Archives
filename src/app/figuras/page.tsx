@@ -4,7 +4,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { IdCard, Quote, UserCircle, Zap, AlertTriangle, Network, ShieldQuestion } from "lucide-react";
 import { figures, type Figure } from "@/lib/content/figures";
-import Image from 'next/image';
+// import Image from 'next/image'; // Image component no longer needed
 import { Badge } from "@/components/ui/badge";
 
 const generateAnchorId = (name: string): string => {
@@ -60,30 +60,21 @@ export default function FigurasPage() {
                     {figure.name}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-6 space-y-4 md:grid md:grid-cols-3 md:gap-6">
-                  <div className="md:col-span-1 flex flex-col items-center">
-                    <Image
-                        src={figure.imagePlaceholder}
-                        alt={`Portrait of ${figure.name}`}
-                        width={200}
-                        height={260}
-                        className="rounded-md object-cover shadow-lg mb-4 border-2"
-                        style={{ borderColor: figure.accentColor }}
-                        data-ai-hint={figure.imageAiHint}
-                      />
-                      <Badge variant="outline" className="text-sm" style={{borderColor: figure.accentColor, color: figure.accentColor}}>{figure.affiliation}</Badge>
-                      {figure.status && (
-                        <Badge variant={figure.status === "Deceased" || figure.status.includes("Deceased") ? "destructive" : "secondary"} className="mt-2 text-sm">
-                          {figure.status === "Deceased" || figure.status.includes("Deceased") ? <AlertTriangle className="mr-1 h-3 w-3" /> : 
-                           figure.status === "Active" ? <Zap className="mr-1 h-3 w-3" /> : 
-                           figure.status === "Digitized (AI Entity)" ? <Network className="mr-1 h-3 w-3" /> :
-                           <ShieldQuestion className="mr-1 h-3 w-3" />
-                          }
-                          Status: {figure.status}
-                        </Badge>
-                      )}
-                  </div>
-                  <div className="md:col-span-2 space-y-3">
+                <CardContent className="p-6 space-y-4">
+                  <div className="space-y-3">
+                    <div className="flex flex-col items-start mb-4"> {/* Badges moved here, aligned start */}
+                        <Badge variant="outline" className="text-sm mb-2" style={{borderColor: figure.accentColor, color: figure.accentColor}}>{figure.affiliation}</Badge>
+                        {figure.status && (
+                          <Badge variant={figure.status.toLowerCase().includes("falecido") || figure.status.toLowerCase().includes("deceased") ? "destructive" : "secondary"} className="text-sm">
+                            {figure.status.toLowerCase().includes("falecido") || figure.status.toLowerCase().includes("deceased") ? <AlertTriangle className="mr-1 h-3 w-3" /> : 
+                             figure.status.toLowerCase().includes("ativo") || figure.status.toLowerCase().includes("active") ? <Zap className="mr-1 h-3 w-3" /> : 
+                             figure.status.toLowerCase().includes("digitalizada") || figure.status.toLowerCase().includes("digitized") ? <Network className="mr-1 h-3 w-3" /> :
+                             <ShieldQuestion className="mr-1 h-3 w-3" />
+                            }
+                            Status: {figure.status}
+                          </Badge>
+                        )}
+                    </div>
                     {figure.bio.map((paragraph, pIndex) => (
                        <p key={pIndex} className="text-foreground text-base leading-relaxed">
                          {paragraph}
